@@ -3476,3 +3476,419 @@ body {
 .back-to-top-btn:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* ==========================================================================
+   RESPONSIVENESS & MEDIA QUERIES
+   ========================================================================== */
+
+/* 1. Laptops and Large Tablets (max-width: 1200px) */
+@media (max-width: 1200px) {
+  .subnav,
+  .hero-section,
+  .discover-section,
+  .fortnite-section,
+  .featured-section,
+  .deals-section,
+  .free-games-section,
+  .top-releases-section,
+  .highlight-section,
+  .trending-section,
+  .lists-section,
+  .banners-section,
+  .spotlight-section,
+  .genres-section,
+  .browse-main-container,
+  .news-section {
+    width: 90%;
+  }
+
+  .game-hero-grid {
+    gap: 30px;
+  }
+}
+
+/* 2. Tablets and Medium Screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .subnav,
+  .hero-section,
+  .discover-section,
+  .fortnite-section,
+  .featured-section,
+  .deals-section,
+  .free-games-section,
+  .top-releases-section,
+  .highlight-section,
+  .trending-section,
+  .lists-section,
+  .banners-section,
+  .spotlight-section,
+  .genres-section,
+  .browse-main-container,
+  .news-section {
+    width: 92%;
+  }
+
+  /* Hero Section: Stack Slide & Game List */
+  .hero-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-banner {
+    height: 480px;
+  }
+
+  .hero-right {
+    width: 100%;
+  }
+
+  .game-list {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 12px;
+    padding: 5px 0 15px;
+    scrollbar-width: thin;
+  }
+
+  .game-list::-webkit-scrollbar {
+    height: 4px;
+  }
+  .game-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .game-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+
+  .game-item {
+    flex: 0 0 200px;
+    display: inline-block;
+  }
+
+  .game-item-inner {
+    padding: 10px;
+  }
+
+  .slider-nav {
+    display: none;
+  }
+
+  /* Discover Section */
+  .discover-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .discover-card {
+    width: 100%;
+    padding: 30px;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .discover-card-text {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .discover-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Other Grids */
+  .deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .free-games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trending-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lists-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .list-column:not(:last-child)::after {
+    display: none;
+  }
+
+  .banners-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .genres-page {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .browse-games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  /* Game Detail Page */
+  .game-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .game-purchase-sidebar {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+  }
+
+  .sys-req-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+/* 3. Small Tablets and Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Navigation adjustments */
+  .topbar {
+    height: 60px;
+  }
+
+  .right-nav {
+    gap: 8px;
+  }
+
+  .signin-btn,
+  .download-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Sub navigation column flow */
+  .subnav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    margin: 20px auto;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .sub-menu {
+    justify-content: flex-start;
+    gap: 20px;
+    padding-left: 0;
+  }
+
+  /* Hero Slider tweaks */
+  .hero-banner {
+    height: 380px;
+  }
+
+  .game-logo-text {
+    font-size: 28px;
+  }
+
+  .slide-tagline {
+    font-size: 10px;
+  }
+
+  .slide-desc {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+  }
+
+  .slide-overlay {
+    padding: 20px;
+  }
+
+  /* Card Grid Resets */
+  .featured-card {
+    width: calc((100% - (16px * 2)) / 3);
+  }
+
+  .top-releases-card {
+    flex: 0 0 calc((100% - 40px) / 3);
+  }
+
+  .deals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deals-promo-content {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .free-games-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .free-games-container {
+    padding: 20px;
+  }
+
+  .trending-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .banners-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spotlight-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .spotlight-hero {
+    height: 250px;
+  }
+
+  .genres-page {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Browse Filters placement swap */
+  .browse-main-container {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+
+  .browse-sidebar {
+    width: 100%;
+  }
+
+  .browse-games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* News List alignment */
+  .news-list-item {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .news-list-img-wrapper {
+    width: 100%;
+  }
+
+  /* Footer Layout stacking */
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-bottom {
+    flex-direction: column-reverse;
+    gap: 25px;
+    align-items: stretch;
+  }
+
+  .footer-legal {
+    max-width: 100%;
+  }
+
+  /* Game Details Page */
+  .ea-play-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .edition-card {
+    flex-direction: column;
+  }
+
+  .edition-img {
+    width: 100%;
+  }
+
+  .edition-action {
+    width: 100%;
+  }
+
+  .game-tags-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* 4. Small Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Header clean up */
+  .menu li:not(.logo-item):not(:nth-child(2)) {
+    display: none; /* Keep logo and STORE only */
+  }
+
+  .right-nav .globe {
+    display: none;
+  }
+
+  /* Hero Banner scale down */
+  .hero-banner {
+    height: 300px;
+  }
+
+  .slide-desc {
+    display: none; /* Hide desc on very small screens */
+  }
+
+  .game-logo-text {
+    font-size: 22px;
+  }
+
+  .buy-btn {
+    padding: 8px 16px;
+  }
+
+  .discover-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-card {
+    width: calc((100% - 16px) / 2);
+  }
+
+  .top-releases-card {
+    flex: 0 0 calc((100% - 20px) / 2);
+  }
+
+  .trending-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .genres-page {
+    grid-template-columns: 1fr;
+  }
+
+  .browse-games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
