@@ -125,39 +125,30 @@ body {
 
 .logo-dropdown {
   position: absolute;
-
-  top: 72px;
-  left: 0;
-
-  width: 530px;
-  height: 420px;
-
-  background: #272730;
-
-  border-radius: 16px;
-
+  top: 68px;
+  left: -20px;
+  width: 620px;
+  background: #18181c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
   display: none;
-
-  z-index: 100;
+  z-index: 1000;
+  padding: 24px;
 }
 
 .dist-dropdown {
   position: absolute;
-
-  top: 72px;
+  top: 68px;
   left: 0;
-
-  width: 250px;
-
-  background: #272730;
-
-  border-radius: 16px;
-
-  padding: 20px;
-
+  width: 280px;
+  background: #18181c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  padding: 16px;
   display: none;
-
-  z-index: 100;
+  z-index: 1000;
 }
 
 .logo-item:hover .logo-dropdown,
@@ -165,39 +156,85 @@ body {
   display: block;
 }
 
-.logo-dropdown {
-  padding: 20px;
+.logo-dropdown-container {
+  display: flex;
+  gap: 24px;
 }
 
-.dropdown-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.dropdown-col h3 {
-  color: #a0a0a0;
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.dropdown-col ul {
-  list-style: none;
+.logo-dropdown-left {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
-.dropdown-col ul li a {
-  color: white;
+.logo-dropdown-vertical-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  align-self: stretch;
+}
+
+.logo-dropdown-right {
+  flex: 1.25;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-section-title {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: block;
+  padding-left: 12px;
+}
+
+.dropdown-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdown-links-list li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.2s;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.dropdown-col ul li a:hover {
-  color: #27b9ff;
+.dropdown-links-list li a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.dropdown-links-list li a svg,
+.dropdown-links-list li a img {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-links-list li a:hover svg,
+.dropdown-links-list li a:hover img {
+  transform: scale(1.08);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 16px 0;
 }
 
 .rotate {
@@ -693,15 +730,55 @@ body {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.discover-thumb {
+.discover-thumb-container {
+  position: relative;
   width: 50px;
   height: 50px;
-
   border-radius: 8px;
-
-  object-fit: cover;
-
+  overflow: hidden;
   flex-shrink: 0;
+}
+
+.discover-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.discover-wishlist-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.discover-wishlist-btn:hover {
+  background: rgba(0, 0, 0, 0.95);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.discover-wishlist-btn img {
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.discover-item:hover .discover-wishlist-btn {
+  opacity: 1;
 }
 
 .discover-item-info {
@@ -882,6 +959,7 @@ body {
 }
 
 .featured-img {
+  position: relative;
   width: 100%;
   padding-top: 133%; /* 3:4 aspect ratio */
   border-radius: 10px;
@@ -893,6 +971,10 @@ body {
 
 .featured-card:hover .featured-img {
   opacity: 0.8;
+}
+
+.featured-card:hover .discover-wishlist-btn {
+  opacity: 1;
 }
 
 .featured-card-info {
@@ -1578,6 +1660,7 @@ body {
 }
 
 .trending-img-container {
+  position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
   border-radius: 12px;
@@ -1594,6 +1677,10 @@ body {
 
 .trending-card:hover .trending-img {
   filter: brightness(1.1);
+}
+
+.trending-card:hover .discover-wishlist-btn {
+  opacity: 1;
 }
 
 .trending-info {
@@ -1711,17 +1798,28 @@ body {
   text-decoration: none;
 }
 
-.top-releases-img {
+.top-releases-img-container {
+  position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
   border-radius: 12px;
-  object-fit: cover;
+  overflow: hidden;
   margin-bottom: 12px;
+}
+
+.top-releases-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: filter 0.2s;
 }
 
 .top-releases-card:hover .top-releases-img {
   filter: brightness(1.1);
+}
+
+.top-releases-card:hover .discover-wishlist-btn {
+  opacity: 1;
 }
 
 .top-releases-card-info {
@@ -1914,12 +2012,23 @@ body {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.list-item-img {
+.list-item-img-container {
+  position: relative;
   width: 90px;
   height: 120px;
   border-radius: 8px;
-  object-fit: cover;
+  overflow: hidden;
   flex-shrink: 0;
+}
+
+.list-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.list-item:hover .discover-wishlist-btn {
+  opacity: 1;
 }
 
 .list-item-info {
