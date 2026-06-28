@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in to Epic Games | Epic Games</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #121212;
+      --card-bg: #18181c;
+      --input-bg: #202024;
+      --input-border: #404044;
+      --input-focus-border: #f5f5f7;
+      --text-color: #ffffff;
+      --text-secondary: #a0a0a5;
+      --primary-blue: #27b9ff;
+      --primary-blue-hover: #00a0e9;
+      --btn-text: #000000;
+      --error-color: #f24242;
+      --error-bg: rgba(242, 66, 66, 0.1);
+      --card-btn-bg: #202024;
+      --card-btn-hover: #2a2a30;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 0;
+    }
+
+    /* Container holding the card */
+    .login-container {
+      width: 100%;
+      max-width: 540px;
+      padding: 0 16px;
+    }
+
+    /* The main card */
+    .login-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 60px 50px;
+      width: 100%;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Epic Logo */
+    .epic-logo {
+      color: var(--text-color);
+      margin-bottom: 24px;
+    }
+
+    .epic-logo svg {
+      width: 44px;
+      height: 52px;
+      display: block;
+      fill: currentColor;
+    }
+
+    /* Heading */
+    .login-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+      letter-spacing: -0.2px;
+    }
+
+    /* Form */
+    .login-form {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* Input Group styling */
+    .input-group {
+      position: relative;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 56px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      padding: 20px 16px 6px 16px;
+      color: var(--text-color);
+      font-size: 14px;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    /* Floating label effect */
+    .input-label {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 14px;
+      pointer-events: none;
+      transition: all 0.15s ease;
+    }
+
+    /* Focus and active states */
+    .input-field:focus {
+      border-color: var(--input-focus-border);
+      background-color: #25252a;
+    }
+
+    .input-field:focus~.input-label,
+    .input-field:not(:placeholder-shown)~.input-label {
+      top: 16px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      transform: none;
+    }
+
+    /* Error state styles */
+    .input-group.has-error .input-field {
+      border-color: var(--error-color) !important;
+    }
+
+    .input-group.has-error .input-label {
+      color: var(--error-color);
+    }
+
+    /* Error message */
+    .error-message {
+      display: none;
+      align-items: center;
+      color: var(--error-color);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 6px;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .input-group.has-error~.error-message {
+      display: flex;
+    }
+
+    .error-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      height: 56px;
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background-color 0.15s ease, opacity 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .submit-btn:active {
+      opacity: 0.9;
+    }
+
+    /* Links */
+    .signup-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .signup-link {
+      color: var(--primary-blue);
+      text-decoration: underline;
+      transition: color 0.15s ease;
+    }
+
+    .signup-link:hover {
+      color: var(--text-color);
+    }
+
+    /* Divider */
+    .divider-container {
+      width: 100%;
+      text-align: center;
+      margin: 28px 0;
+      position: relative;
+    }
+
+    .divider-line {
+      border-top: 1px solid #2a2a30;
+      width: 100%;
+      display: block;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-color);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    /* Grid Layout for Social buttons */
+    .social-grid {
+      display: grid;
+      width: 100%;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Social/Console Button */
+    .social-btn {
+      background-color: var(--card-btn-bg);
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      text-decoration: none;
+      color: var(--text-color);
+      min-height: 85px;
+    }
+
+    .social-btn:hover {
+      background-color: var(--card-btn-hover);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .social-btn:active {
+      transform: scale(0.98);
+    }
+
+    .social-icon-wrapper {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .social-name {
+      font-size: 10px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      max-width: 85px;
+      color: var(--text-color);
+    }
+
+    /* Specific Social Icon Colors & Wrappers */
+    .bg-playstation {
+      background-color: #003087;
+    }
+
+    .bg-xbox {
+      background-color: #107c10;
+    }
+
+    .bg-nintendo {
+      background-color: #e60012;
+    }
+
+    .bg-google {
+      background-color: #ffffff;
+    }
+
+    .bg-steam {
+      background-color: #206495;
+    }
+
+    .bg-disney {
+      background-color: #ffffff;
+    }
+
+    .bg-apple {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .bg-facebook {
+      background-color: #1877f2;
+    }
+
+    .bg-lego {
+      background-color: #FFD400;
+    }
+
+    .bg-autodesk {
+      background-color: #ffffff;
+    }
+
+    /* Bottom Help Links */
+    .bottom-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 12px;
+      width: 100%;
+    }
+
+    .bottom-link {
+      color: var(--primary-blue);
+      text-decoration: underline;
+      font-size: 12px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .bottom-link:hover {
+      color: var(--text-color);
+    }
+
+    /* SVG & Image dimensions */
+    .social-icon-wrapper svg,
+    .social-icon-wrapper img {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* LEGO SVG/Image is square-ish */
+    .bg-lego svg,
+    .bg-lego img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 35px 20px;
+      }
+
+      .social-name {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+    <div class="login-card">
+
+      <!-- Epic Games Shield Logo -->
+      <div class="epic-logo">
+        <!-- <svg viewBox="0 0 44 52" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M22 0L0 5.4v13.6C0 35.6 11.2 47.7 22 52c10.8-4.3 22-16.4 22-33V5.4L22 0zm16.7 34.6c-2.4 4.8-6.9 8.2-12.3 9.4v-4.1c0-.9-.7-1.6-1.6-1.6h-.7c-.9 0-1.6.7-1.6 1.6v4.1c-5.4-1.2-9.9-4.6-12.3-9.4-.5-.9-.2-2 .7-2.5.9-.5 2-.2 2.5.7 1.8 3.5 5.1 6 9.1 6.8V23.7c0-1.1-.9-2-2-2h-3.3c-1.1 0-2-.9-2-2v-3.3c0-1.1.9-2 2-2h3.3c1.1 0 2-.9 2-2V9.8c0-.9.7-1.6 1.6-1.6h1.4c.9 0 1.6.7 1.6 1.6v2.6c0 1.1.9 2 2 2H35c1.1 0 2 .9 2 2v3.3c0 1.1-.9 2-2 2h-3.3c-1.1 0-2 .9-2 2v15.9c4-.8 7.3-3.3 9.1-6.8.5-.9 1.6-1.2 2.5-.7.9.5 1.2 1.6.7 2.5z" />
+        </svg> -->
+        <img style="width: 55px;" src="images/epic/login/epic.png" alt="">
+      </div>
+
+      <h1 class="login-title">Sign in to Epic Games</h1>
+
+      <!-- Login Form -->
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="input-group" id="emailGroup">
+          <input type="email" id="email" class="input-field" placeholder=" " required autocomplete="email">
+          <label for="email" class="input-label">Email address</label>
+        </div>
+
+        <!-- Error Message block -->
+        <div class="error-message" id="emailError">
+          <span class="error-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+            </svg>
+          </span>
+          Enter a valid email address
+        </div>
+
+        <button type="submit" class="submit-btn">Continue</button>
+      </form>
+
+      <div class="signup-text">
+        New here? <a href="#" class="signup-link">Create an account</a>
+      </div>
+
+      <!-- Console Section -->
+      <div class="divider-container">
+        <span class="divider-line"></span>
+      </div>
+
+      <h2 class="section-title">Only played on console?</h2>
+      <p class="section-subtitle">Sign in to access your progress and purchases</p>
+
+      <div class="social-grid grid-3">
+        <!-- PlayStation Network -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-playstation">
+            <img src="images/epic/login/123123 (1).svg" alt="PlayStation">
+          </div>
+          <span class="social-name">PlayStation™<br>Network</span>
+        </a>
+
+        <!-- Xbox network -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-xbox">
+            <img src="images/epic/login/123123 (2).svg" alt="Xbox">
+          </div>
+          <span class="social-name">Xbox<br>network</span>
+        </a>
+
+        <!-- Nintendo Account -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-nintendo">
+            <img src="images/epic/login/123123 (3).svg" alt="Nintendo">
+          </div>
+          <span class="social-name">Nintendo<br>Account</span>
+        </a>
+      </div>
+
+      <!-- Other Ways Section -->
+      <h2 class="section-title">Other ways to sign in</h2>
+      <div style="height: 16px;"></div>
+
+      <div class="social-grid grid-3">
+        <!-- Google -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-google">
+            <img src="images/epic/login/google.svg" alt="Google">
+          </div>
+          <span class="social-name">Google</span>
+        </a>
+
+        <!-- Steam -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-steam">
+            <img src="images/epic/login/123123 (5).svg" alt="Steam">
+          </div>
+          <span class="social-name">Steam</span>
+        </a>
+
+        <!-- Disney -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-disney">
+            <img src="images/epic/login/disney.svg" alt="Disney">
+          </div>
+          <span class="social-name">Disney</span>
+        </a>
+
+        <!-- Sign in with Apple -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-apple">
+            <img src="images/epic/login/apple.jpg" alt="Apple">
+          </div>
+          <span class="social-name">Sign in with Apple</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-facebook">
+            <img src="images/epic/login/123123 (7).svg" alt="Facebook">
+          </div>
+          <span class="social-name">Facebook</span>
+        </a>
+
+        <!-- LEGO Account -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-lego">
+            <img src="images/epic/login/lego.svg" alt="LEGO">
+          </div>
+          <span class="social-name">LEGO® Account</span>
+        </a>
+
+        <!-- Autodesk -->
+        <a href="#" class="social-btn">
+          <div class="social-icon-wrapper bg-autodesk">
+            <img src="images/epic/login/desk.svg" alt="Autodesk">
+          </div>
+          <span class="social-name">Autodesk</span>
+        </a>
+      </div>
+
+      <!-- Bottom Links -->
+      <div class="bottom-links">
+        <a href="#" class="bottom-link">Trouble signing in?</a>
+        <a href="#" class="bottom-link">Privacy Policy</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const emailGroup = document.getElementById('emailGroup');
+
+      // Regular Expression for validating email addresses
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      function validateEmail() {
+        const emailValue = emailInput.value.trim();
+
+        if (!emailValue || !emailRegex.test(emailValue)) {
+          emailGroup.classList.add('has-error');
+          return false;
+        } else {
+          emailGroup.classList.remove('has-error');
+          return true;
+        }
+      }
+
+      // Validate on form submission
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const isValid = validateEmail();
+
+        if (isValid) {
+          // Proceed with login logic / next step
+          alert('Success! Proceeding to the next step.');
+        }
+      });
+
+      // Clear error state as the user types
+      emailInput.addEventListener('input', () => {
+        if (emailInput.value.trim() !== '') {
+          // If they are typing, we can check or simply remove the error 
+          // until they submit or blur to keep UX clean.
+          // Let's remove the error class on input if it matches regex
+          if (emailRegex.test(emailInput.value.trim())) {
+            emailGroup.classList.remove('has-error');
+          }
+        }
+      });
+
+      // Also validate on blur (when user clicks out of the input)
+      emailInput.addEventListener('blur', () => {
+        if (emailInput.value.trim() !== '') {
+          validateEmail();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

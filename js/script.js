@@ -236,7 +236,6 @@ $(function () {
         updateGenresCarousel();
     }
 
-    // Games database for search
     var gamesDatabase = [
         {
             title: "Sifu",
@@ -300,7 +299,6 @@ $(function () {
         }
     ];
 
-    // Search Input Logic
     $(".search-input").on("input", function () {
         var query = $(this).val().toLowerCase().trim();
         var dropdown = $(this).siblings(".search-results-dropdown");
@@ -311,16 +309,13 @@ $(function () {
             return;
         }
 
-        // Filter games matching query
         var matches = gamesDatabase.filter(function (game) {
             return game.title.toLowerCase().indexOf(query) !== -1;
         });
 
-        // Clear previous results
         listContainer.empty();
 
         if (matches.length > 0) {
-            // Take up to 4 top matches
             var topMatches = matches.slice(0, 4);
 
             $.each(topMatches, function (idx, game) {
@@ -343,17 +338,105 @@ $(function () {
         }
     });
 
-    // Show dropdown again on focus if search input is not empty
     $(".search-input").on("focus", function () {
         if ($(this).val().trim() !== "") {
             $(this).siblings(".search-results-dropdown").stop(true, true).fadeIn(150);
         }
     });
 
-    // Close dropdown when clicking outside
     $(document).on("click", function (e) {
         if (!$(e.target).closest(".search-box").length) {
             $(".search-results-dropdown").stop(true, true).fadeOut(150);
+        }
+    });
+
+
+    var bookmarkedGames = JSON.parse(localStorage.getItem("bookmarkedGames")) || {};
+
+    function getGameTitle($btn) {
+
+        var $heroSlide = $btn.closest('.hero-slide');
+        if ($heroSlide.length) {
+            return $heroSlide.find('.game-logo-text').text().trim();
+        }
+
+        var $featuredCard = $btn.closest('.featured-card');
+        if ($featuredCard.length) {
+            return $featuredCard.find('.featured-card-title').text().trim();
+        }
+
+        var $discoverItem = $btn.closest('.discover-item');
+        if ($discoverItem.length) {
+            return $discoverItem.find('.discover-item-title').text().trim();
+        }
+
+        var $parentCard = $btn.closest('.card, [class*="-card"], .game-item, [class*="-item"]');
+        if ($parentCard.length) {
+            var $title = $parentCard.find('[class*="-title"], [class*="-name"], h3, h4');
+            if ($title.length) {
+                return $title.first().text().trim();
+            }
+        }
+        return null;
+    }
+
+
+    function updateBookmarkIcon($btn, isBookmarked) {
+        var $img = $btn.is('img') ? $btn : $btn.find('img');
+        if ($img.length) {
+            if (isBookmarked) {
+                $img.attr('src', 'images/bookmark_filled.svg');
+            } else {
+                $img.attr('src', 'images/bookmark.png');
+            }
+        }
+    }
+
+
+    $('.wish-btn, .discover-wishlist-btn').each(function () {
+        var $btn = $(this);
+        var title = getGameTitle($btn);
+        if (title && bookmarkedGames[title]) {
+            updateBookmarkIcon($btn, true);
+        } else {
+            updateBookmarkIcon($btn, false);
+        }
+    });
+
+
+    $(document).on('click', '.wish-btn, .discover-wishlist-btn', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var $btn = $(this);
+        var title = getGameTitle($btn);
+
+        if (!title) return;
+
+        if (bookmarkedGames[title]) {
+            delete bookmarkedGames[title];
+            updateBookmarkIcon($btn, false);
+        } else {
+            bookmarkedGames[title] = true;
+            updateBookmarkIcon($btn, true);
+        }
+
+        localStorage.setItem("bookmarkedGames", JSON.stringify(bookmarkedGames));
+    });
+
+    $(document).on('click', '.globe', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $dropdown = $(this).find('.globe-dropdown');
+
+        $('.logo-dropdown, .dist-dropdown, .search-results-dropdown').fadeOut(150);
+
+        $dropdown.stop(true, true).fadeToggle(150);
+    });
+
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.globe').length) {
+            $('.globe-dropdown').stop(true, true).fadeOut(150);
         }
     });
 
