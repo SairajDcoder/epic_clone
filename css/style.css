@@ -264,6 +264,7 @@ body {
   align-items: center;
 
   padding: 0 15px;
+  position: relative; /* Added for absolute positioning of dropdown */
 }
 
 .search-icon {
@@ -287,6 +288,117 @@ body {
 
 .search-box input::placeholder {
   color: #9b9b9b;
+}
+
+/* Live Search Results Dropdown */
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  width: 380px;
+  background: #18181c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 1000;
+  padding: 16px 12px;
+}
+
+.search-results-header {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+
+.search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.search-result-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+}
+
+.search-result-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.search-result-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.search-result-category {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.search-result-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #27b9ff;
+  transition: color 0.15s ease;
+}
+
+.search-result-item:hover .search-result-title {
+  color: #ffffff;
+}
+
+.search-view-all {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 8px 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.search-view-all:hover {
+  color: #ffffff;
+}
+
+.search-view-all .arrow {
+  margin-left: 6px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.search-view-all:hover .arrow {
+  transform: translateX(4px);
 }
 
 .sub-menu {
@@ -882,7 +994,7 @@ body {
 .featured-section {
   width: 75%;
   margin: 50px auto 0;
-  overflow: hidden; /* Important for carousel */
+  overflow: hidden; 
 }
 
 .featured-header {
@@ -951,7 +1063,7 @@ body {
 }
 
 .featured-card {
-  width: calc((100% - (16px * 5)) / 6); /* 6 cards per view */
+  width: calc((100% - (16px * 5)) / 6); 
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -961,7 +1073,7 @@ body {
 .featured-img {
   position: relative;
   width: 100%;
-  padding-top: 133%; /* 3:4 aspect ratio */
+  padding-top: 133%; 
   border-radius: 10px;
   background-size: cover;
   background-position: center;
@@ -1000,7 +1112,7 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.4;
-  height: 39px; /* Fixed height for 2 lines */
+  height: 39px; 
 }
 
 .featured-price-row {
@@ -1140,7 +1252,7 @@ body {
 .deals-img-container {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 56.25%; 
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 15px;
@@ -1228,7 +1340,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: calc(100% - 65px); /* Approximate height leaving room for footer */
+  height: calc(100% - 65px); 
   margin-bottom: 15px;
 }
 
@@ -1337,7 +1449,7 @@ body {
 .free-game-img-container {
   position: relative;
   width: 100%;
-  padding-top: 133%; /* 3:4 aspect ratio approx */
+  padding-top: 133%; 
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 12px;
@@ -1611,7 +1723,7 @@ body {
   font-weight: 600;
 }
 
-/* Trending Section */
+
 .trending-section {
   width: 75%;
   margin: 50px auto;
@@ -1736,7 +1848,7 @@ body {
   font-size: 12px;
 }
 
-/* Lists Section */
+
 .lists-section {
   width: 75%;
   margin: 50px auto 100px;
@@ -1767,11 +1879,7 @@ body {
   font-weight: 600;
 }
 
-  /* align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  transition: background 0.2s;
-} */
+  
 
 .top-releases-nav-arrow:hover {
   background: rgba(255, 255, 255, 0.2);
@@ -1940,7 +2048,7 @@ body {
   font-weight: 600;
 }
 
-/* Lists Section */
+
 .lists-section {
   width: 75%;
   margin: 50px auto 100px;
@@ -2111,7 +2219,7 @@ body {
   color: #ffb800;
 }
 
-/* Banners Section */
+
 .banners-section {
   width: 75%;
   margin: 50px auto 100px;
@@ -2187,7 +2295,7 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Spotlight Section */
+
 .spotlight-section {
   width: 75%;
   margin: 50px auto 100px;
@@ -2307,7 +2415,7 @@ body {
   color: #a0a0a0;
   font-size: 12px;
 }
-/* Genres Section */
+
 .genres-section {
   width: 75%;
   margin: 50px auto;
@@ -2423,7 +2531,7 @@ body {
   text-align: center;
 }
 
-/* Browse Main Section */
+
 .browse-main-container {
   width: 75%;
   margin: 50px auto 100px;
@@ -2485,7 +2593,7 @@ body {
   gap: 20px;
 }
 
-/* Sidebar */
+
 .browse-sidebar {
   width: 270px;
   flex-shrink: 0;
@@ -2671,7 +2779,7 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* News Section */
+
 .news-section {
   width: 75%;
   margin: 50px auto 30px;
@@ -2804,7 +2912,7 @@ body {
   margin: 0;
 }
 
-/* --- GAME DETAIL PAGE --- */
+
 
 .game-detail-container {
   max-width: 1200px;
@@ -2887,7 +2995,7 @@ body {
   margin-bottom: 60px;
 }
 
-/* Left Column */
+
 .game-main-img {
   width: 100%;
   aspect-ratio: 16/9;
@@ -2993,7 +3101,7 @@ body {
   background: #303030;
 }
 
-/* EA Play Banner */
+
 .ea-play-banner {
   background: linear-gradient(90deg, #180005 0%, #0b0b14 100%);
   border: 1px solid rgba(255,0,0,0.2);
@@ -3079,7 +3187,7 @@ body {
   margin-top: 10px;
 }
 
-/* Editions Section */
+
 .game-editions-section {
   margin-top: 60px;
   margin-bottom: 60px;
@@ -3163,7 +3271,7 @@ body {
   margin-top: 10px;
 }
 
-/* System Reqs */
+
 .game-sys-reqs {
   margin-bottom: 60px;
   background: #18181c;
@@ -3217,7 +3325,7 @@ body {
   margin: 0;
 }
 
-/* Legal block */
+
 .game-legal-block {
   background: #18181c;
   padding: 30px;
@@ -3240,9 +3348,9 @@ body {
   margin-top: 20px;
 }
 
-/* Right Sidebar (Sticky/Purchase) */
+
 .game-purchase-sidebar {
-  /* sticky positioning if desired, but we can just let it sit */
+  
 }
 
 .rating-box {
@@ -3371,7 +3479,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Ratings Section Bottom */
+
 .game-ratings-section {
   margin-top: 60px;
   margin-bottom: 60px;
@@ -3451,7 +3559,7 @@ body {
   font-size: 24px;
 }
 
-/* Footer Section */
+
 .site-footer {
   background: #202020;
   padding: 40px 0;
@@ -3586,11 +3694,9 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ==========================================================================
-   RESPONSIVENESS & MEDIA QUERIES
-   ========================================================================== */
 
-/* 1. Laptops and Large Tablets (max-width: 1200px) */
+
+
 @media (max-width: 1200px) {
   .subnav,
   .hero-section,
@@ -3616,7 +3722,7 @@ body {
   }
 }
 
-/* 2. Tablets and Medium Screens (max-width: 1024px) */
+
 @media (max-width: 1024px) {
   .subnav,
   .hero-section,
@@ -3637,7 +3743,7 @@ body {
     width: 92%;
   }
 
-  /* Hero Section: Stack Slide & Game List */
+  
   .hero-section {
     flex-direction: column;
     gap: 15px;
@@ -3689,7 +3795,7 @@ body {
     display: none;
   }
 
-  /* Discover Section */
+  
   .discover-section {
     flex-direction: column;
     gap: 20px;
@@ -3712,7 +3818,7 @@ body {
     gap: 10px;
   }
 
-  /* Other Grids */
+  
   .deals-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -3753,7 +3859,7 @@ body {
     gap: 25px;
   }
 
-  /* Game Detail Page */
+  
   .game-hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -3770,9 +3876,9 @@ body {
   }
 }
 
-/* 3. Small Tablets and Large Phones (max-width: 768px) */
+
 @media (max-width: 768px) {
-  /* Navigation adjustments */
+  
   .topbar {
     height: 60px;
   }
@@ -3787,7 +3893,7 @@ body {
     font-size: 13px;
   }
 
-  /* Sub navigation column flow */
+  
   .subnav {
     flex-direction: column;
     align-items: stretch;
@@ -3799,13 +3905,17 @@ body {
     width: 100%;
   }
 
+  .search-results-dropdown {
+    width: 100%;
+  }
+
   .sub-menu {
     justify-content: flex-start;
     gap: 20px;
     padding-left: 0;
   }
 
-  /* Hero Slider tweaks */
+  
   .hero-banner {
     height: 380px;
   }
@@ -3827,7 +3937,7 @@ body {
     padding: 20px;
   }
 
-  /* Card Grid Resets */
+  
   .featured-card {
     width: calc((100% - (16px * 2)) / 3);
   }
@@ -3875,7 +3985,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Browse Filters placement swap */
+  
   .browse-main-container {
     flex-direction: column-reverse;
     gap: 30px;
@@ -3889,7 +3999,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* News List alignment */
+  
   .news-list-item {
     flex-direction: column;
     gap: 15px;
@@ -3899,7 +4009,7 @@ body {
     width: 100%;
   }
 
-  /* Footer Layout stacking */
+  
   .footer-top {
     flex-direction: column;
     align-items: flex-start;
@@ -3920,7 +4030,7 @@ body {
     max-width: 100%;
   }
 
-  /* Game Details Page */
+  
   .ea-play-banner {
     flex-direction: column;
     align-items: flex-start;
@@ -3945,24 +4055,24 @@ body {
   }
 }
 
-/* 4. Small Phones (max-width: 480px) */
+
 @media (max-width: 480px) {
-  /* Header clean up */
+  
   .menu li:not(.logo-item):not(:nth-child(2)) {
-    display: none; /* Keep logo and STORE only */
+    display: none; 
   }
 
   .right-nav .globe {
     display: none;
   }
 
-  /* Hero Banner scale down */
+  
   .hero-banner {
     height: 300px;
   }
 
   .slide-desc {
-    display: none; /* Hide desc on very small screens */
+    display: none; 
   }
 
   .game-logo-text {

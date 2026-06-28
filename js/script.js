@@ -106,9 +106,11 @@ $(function () {
 
     goToSlide(0);
 
-    // Featured Carousel Logic
+
+
+    // featured one
     var currentFeaturedPage = 0;
-    var totalFeaturedPages = 2; // We have 12 cards, 6 per view = 2 pages
+    var totalFeaturedPages = 2; // total 12 cards, 6 per page
 
     function updateFeaturedCarousel() {
         var translateX = -(currentFeaturedPage * 100);
@@ -143,12 +145,11 @@ $(function () {
         }
     });
 
-    // Initialize carousel state
     updateFeaturedCarousel();
 
-    // Top Releases Carousel Logic
+    // top release
     var currentTopReleasesPage = 0;
-    var totalTopReleasesPages = 2; // We have 12 cards, 6 per view = 2 pages
+    var totalTopReleasesPages = 2; // same total 12 cards, 6 per page
 
     function updateTopReleasesCarousel() {
         var translateOffset = currentTopReleasesPage === 0 ? "0px" : "calc(" + (-100 * currentTopReleasesPage) + "% - " + (20 * currentTopReleasesPage) + "px)";
@@ -183,10 +184,9 @@ $(function () {
         }
     });
 
-    // Initialize carousel state
     updateTopReleasesCarousel();
 
-    // Spotlight Carousel Logic (Looping)
+    // spotlight 
     var currentSpotlightPage = 0;
     var totalSpotlightPages = $(".spotlight-page").length;
 
@@ -207,12 +207,11 @@ $(function () {
         updateSpotlightCarousel();
     });
 
-    // Initialize Spotlight
     if ($("#spotlight-track").length > 0) {
         updateSpotlightCarousel();
     }
 
-    // Genres Carousel Logic (Looping)
+    // genere
     var currentGenresPage = 0;
     var totalGenresPages = $(".genres-page").length;
 
@@ -233,9 +232,129 @@ $(function () {
         updateGenresCarousel();
     });
 
-    // Initialize Genres
     if ($("#genres-track").length > 0) {
         updateGenresCarousel();
     }
+
+    // Games database for search
+    var gamesDatabase = [
+        {
+            title: "Sifu",
+            category: "Base Game",
+            image: "images/epic/discover/search/10014.jpg",
+            link: "game.html"
+        },
+        {
+            title: "Sifu Digital Deluxe Edition",
+            category: "Edition",
+            image: "images/epic/discover/search/10015.jpg",
+            link: "game.html"
+        },
+        {
+            title: "Sifu Deluxe Edition Upgrade Bundle",
+            category: "Add-On",
+            image: "images/epic/discover/search/10016.jpg",
+            link: "game.html"
+        },
+        {
+            title: "PC Building Simulator 2",
+            category: "Base Game",
+            image: "images/epic/discover/search/10017.jpg",
+            link: "#"
+        },
+        {
+            title: "DAVE THE DIVER",
+            category: "Base Game",
+            image: "images/epic/discover/search/10011.jpg",
+            link: "game.html"
+        },
+        {
+            title: "Rocket League",
+            category: "Base Game",
+            image: "images/epic/discover/search/10010.jpg",
+            link: "#"
+        },
+        {
+            title: "EA SPORTS FC™ 26",
+            category: "Base Game",
+            image: "images/epic/discover/search/10026.jpg",
+            link: "game.html"
+        },
+        {
+            title: "007 First Light",
+            category: "Base Game",
+            image: "images/epic/discover/search/10012.jpg",
+            link: "#"
+        },
+        {
+            title: "CONTROL Resonant",
+            category: "Base Game",
+            image: "images/epic/discover/search/10013.jpg",
+            link: "#"
+        },
+        {
+            title: "Subnautica 2",
+            category: "Base Game",
+            image: "images/epic/discover/search/10019.jpg",
+            link: "#"
+        }
+    ];
+
+    // Search Input Logic
+    $(".search-input").on("input", function () {
+        var query = $(this).val().toLowerCase().trim();
+        var dropdown = $(this).siblings(".search-results-dropdown");
+        var listContainer = dropdown.find(".search-results-list");
+
+        if (query === "") {
+            dropdown.stop(true, true).fadeOut(150);
+            return;
+        }
+
+        // Filter games matching query
+        var matches = gamesDatabase.filter(function (game) {
+            return game.title.toLowerCase().indexOf(query) !== -1;
+        });
+
+        // Clear previous results
+        listContainer.empty();
+
+        if (matches.length > 0) {
+            // Take up to 4 top matches
+            var topMatches = matches.slice(0, 4);
+
+            $.each(topMatches, function (idx, game) {
+                var itemHtml = `
+                    <a href="${game.link}" class="search-result-item">
+                        <img src="${game.image}" class="search-result-thumb" alt="${game.title}">
+                        <div class="search-result-info">
+                            <span class="search-result-category">${game.category}</span>
+                            <span class="search-result-title">${game.title}</span>
+                        </div>
+                    </a>
+                `;
+                listContainer.append(itemHtml);
+            });
+
+            dropdown.stop(true, true).fadeIn(150);
+        } else {
+            listContainer.append('<div class="text-muted p-2 text-center" style="font-size: 13px;">No results found</div>');
+            dropdown.stop(true, true).fadeIn(150);
+        }
+    });
+
+    // Show dropdown again on focus if search input is not empty
+    $(".search-input").on("focus", function () {
+        if ($(this).val().trim() !== "") {
+            $(this).siblings(".search-results-dropdown").stop(true, true).fadeIn(150);
+        }
+    });
+
+    // Close dropdown when clicking outside
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest(".search-box").length) {
+            $(".search-results-dropdown").stop(true, true).fadeOut(150);
+        }
+    });
 
 });
