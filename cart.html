@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart - Epic Games Clone</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .cart-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 60px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .cart-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .cart-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .epic-rewards-badge {
+            color: #a0a0a5;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .epic-rewards-badge .amount {
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 4px 12px;
+            color: #fff;
+        }
+
+        .cart-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0 100px;
+        }
+
+        .cart-sad-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #333338;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .cart-sad-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #333338;
+        }
+
+        .cart-empty-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cart-shop-btn {
+            background-color: #0078f2;
+            color: #121212;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+        
+        .cart-shop-btn:hover {
+            background-color: #00a4ff;
+            color: #121212;
+        }
+
+        .cart-divider {
+            height: 1px;
+            background-color: #333;
+            margin: 0 0 30px 0;
+        }
+
+        .cart-disclaimer {
+            font-size: 11px;
+            color: #a0a0a5;
+            display: flex;
+            gap: 5px;
+        }
+        .cart-disclaimer .highlight {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="left-nav">
+            <ul class="menu">
+                <li class="logo-item">
+                    <a href="#" class="logo-link">
+                        <img src="images/logo.png" class="logo">
+                        <span class="chevron logo-chevron"></span>
+                    </a>
+                </li>
+                <li><a href="#" class="store-link">STORE</a></li>
+                <li><a href="#">Support</a></li>
+                <li class="dist-item">
+                    <a href="#" class="dist-link">
+                        Distribute
+                        <span class="chevron dist-chevron"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="right-nav">
+            <div class="globe">
+                <img style="width: 20px;" src="images/globe.png" alt="Select Language">
+            </div>
+            <a href="login.html" style="text-decoration: none;">
+                <button class="signin-btn">Sign In</button>
+            </a>
+            <button class="download-btn">Download</button>
+        </div>
+    </div>
+
+    <div class="subnav">
+        <div class="search-box">
+            <span class="search-icon"><img style="width: 13px;" src="images/search.png" alt=""></span>
+            <input type="text" class="search-input" placeholder="Search store">
+        </div>
+
+        <ul class="sub-menu">
+            <li><a href="index.html">Discover</a></li>
+            <li><a href="browse.html">Browse</a></li>
+            <li><a href="news.html">News</a></li>
+        </ul>
+
+        <div class="subnav-right" style="margin-left: auto; display: flex; gap: 20px; align-items: center; padding-right: 20px;">
+            <a href="wishlist.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Wishlist</a>
+            <a href="gifts.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Gifts</a>
+            <a href="cart.html" style="color: #fff; text-decoration: none; font-size: 14px; font-weight: 500;">Cart</a>
+        </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="cart-container">
+        
+        <div class="cart-header-row">
+            <h1 class="cart-title">My Cart</h1>
+            <div class="epic-rewards-badge">
+                Epic Rewards ↗
+                <div class="amount">₹0.00</div>
+            </div>
+        </div>
+        
+        <div class="cart-empty-state">
+            <div class="cart-sad-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="#a0a0a5" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="9" r="1"></circle>
+                    <circle cx="15" cy="9" r="1"></circle>
+                    <path d="M16 16c-1.5-1.5-3.5-1.5-5 0"></path>
+                </svg>
+            </div>
+            <div class="cart-empty-title">Your cart is empty.</div>
+            <a href="browse.html" class="cart-shop-btn">Shop for Games & Apps</a>
+        </div>
+        
+        <div class="cart-divider"></div>
+        <div class="cart-disclaimer">
+            <span>*</span>
+            <span>The lowest price offered on <span class="highlight">The Epic Games Store</span> in the last 30 days before discount</span>
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth-nav.js"></script>
+</body>
+</html>

@@ -287,6 +287,12 @@
 
         </ul>
 
+        <div class="subnav-right" style="margin-left: auto; display: flex; gap: 20px; align-items: center; padding-right: 20px;">
+            <a href="wishlist.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Wishlist</a>
+            <a href="gifts.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Gifts</a>
+            <a href="cart.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Cart</a>
+        </div>
+
     </div>
 
     <div class="genres-section">
@@ -596,33 +602,33 @@
                         <span class="accordion-chevron up"></span>
                     </div>
                 </div>
-                <div class="accordion-content">
+                <div class="accordion-content" id="types-filter-container">
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Apps
+                        <input type="checkbox" value="App"> Apps
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Editor
+                        <input type="checkbox" value="Editor"> Editor
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Experience
+                        <input type="checkbox" value="Experience"> Experience
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox" checked> Game
+                        <input type="checkbox" value="Game" checked> Game
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Game Add-On
+                        <input type="checkbox" value="Add-On"> Game Add-On
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Game Bundle
+                        <input type="checkbox" value="Bundle"> Game Bundle
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Game Demo
+                        <input type="checkbox" value="Demo"> Game Demo
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Game Edition
+                        <input type="checkbox" value="Edition"> Game Edition
                     </label>
                     <label class="filter-checkbox">
-                        <input type="checkbox"> Subscription
+                        <input type="checkbox" value="Subscription"> Subscription
                     </label>
                 </div>
             </div>
@@ -775,8 +781,125 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
     <script src="js/script.js"></script>
+    <script src="js/auth-nav.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // 1. Populate more games from gamesDatabase to fill out the browse grid
+            var existingTitles = [];
+            $('.top-releases-card-title').each(function() {
+                existingTitles.push($(this).text().trim().toLowerCase());
+            });
+
+            var $grid = $('.browse-games-grid');
+            var gamesAdded = 0;
+            
+            // Random prices for filled games
+            var randomPrices = ["Free", "₹499", "₹1,299", "₹2,499", "₹899", "₹3,999", "Free"];
+            
+            if (typeof window.gamesDatabase !== 'undefined') {
+                $.each(window.gamesDatabase, function(index, game) {
+                    if (gamesAdded >= 40) return false; // Add up to 40 more games
+                    
+                    if (!existingTitles.includes(game.title.toLowerCase()) && game.image && game.title) {
+                        var price = randomPrices[Math.floor(Math.random() * randomPrices.length)];
+                        var html = `
+                            <a href="${game.link}" class="top-releases-card">
+                                <div class="top-releases-img-container">
+                                    <img src="${game.image}" class="top-releases-img">
+                                    <div class="discover-wishlist-btn"><img src="images/bookmark.png" alt="Add to Wishlist"></div>
+                                </div>
+                                <div class="top-releases-card-info">
+                                    <span class="top-releases-tag">${game.category}</span>
+                                    <span class="top-releases-card-title">${game.title}</span>
+                                    <div class="list-price-row" style="margin-top: 4px;"></div>
+                                    <span class="top-releases-price">${price}</span>
+                                </div>
+                            </a>
+                        `;
+                        $grid.append(html);
+                        gamesAdded++;
+                    }
+                });
+            }
+
+            // 2. Setup filtering logic
+            var $searchInput = $('.sidebar-search input');
+            var $checkboxes = $('#types-filter-container input[type="checkbox"]');
+            var $resetBtn = $('.sidebar-reset');
+            
+            function applyFilters() {
+                var keyword = $searchInput.val().toLowerCase().trim();
+                
+                // Get checked types
+                var checkedTypes = [];
+                $checkboxes.each(function() {
+                    if ($(this).is(':checked')) {
+                        checkedTypes.push($(this).val().toLowerCase());
+                    }
+                });
+                
+                var visibleCount = 0;
+                
+                $('.browse-games-grid .top-releases-card').each(function() {
+                    var $card = $(this);
+                    var title = $card.find('.top-releases-card-title').text().toLowerCase();
+                    var tag = $card.find('.top-releases-tag').text().toLowerCase();
+                    
+                    // Match Keyword
+                    var matchesKeyword = keyword === "" || title.indexOf(keyword) !== -1;
+                    
+                    // Match Types
+                    var matchesType = false;
+                    if (checkedTypes.length === 0) {
+                        matchesType = true; // if nothing selected, show all
+                    } else {
+                        $.each(checkedTypes, function(i, typeStr) {
+                            if (tag.indexOf(typeStr) !== -1 || (typeStr === 'game' && tag.indexOf('base game') !== -1)) {
+                                matchesType = true;
+                            }
+                        });
+                    }
+                    
+                    if (matchesKeyword && matchesType) {
+                        $card.show();
+                        visibleCount++;
+                    } else {
+                        $card.hide();
+                    }
+                });
+                
+                // Update header title to show "Show: Game X"
+                if (checkedTypes.length > 0) {
+                    var label = checkedTypes.map(function(t) { return t.charAt(0).toUpperCase() + t.slice(1); }).join(', ');
+                    $('.browse-active-filter').html(label + ' <span class="browse-filter-close">✕</span>').show();
+                } else {
+                    $('.browse-active-filter').hide();
+                }
+            }
+
+            // Event Listeners
+            $searchInput.on('input', applyFilters);
+            $checkboxes.on('change', applyFilters);
+            
+            $resetBtn.on('click', function(e) {
+                e.preventDefault();
+                $searchInput.val('');
+                $checkboxes.prop('checked', false);
+                // Set "Game" as default checked as per UI
+                $checkboxes.filter('[value="Game"]').prop('checked', true);
+                applyFilters();
+            });
+            
+            $(document).on('click', '.browse-filter-close', function() {
+                $resetBtn.click();
+            });
+
+            // Initial apply
+            applyFilters();
+        });
+    </script>
 
 </body>
 

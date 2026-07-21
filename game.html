@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epic Games Clone - Game Details</title>
+    <title id="pageTitle">Epic Games Clone - Game Details</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -252,7 +252,7 @@
 
         <div class="search-box">
 
-            <span class="search-icon">&#128269;</span>
+            <span class="search-icon"><img style="width: 13px;" src="images/search.png" alt=""></span>
 
             <input type="text" class="search-input" placeholder="Search store">
 
@@ -288,20 +288,27 @@
 
         </ul>
 
+        <div class="subnav-right" style="margin-left: auto; display: flex; gap: 20px; align-items: center; padding-right: 20px;">
+            <a href="wishlist.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Wishlist</a>
+            <a href="gifts.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Gifts</a>
+            <a href="cart.html" style="color: #a0a0a5; text-decoration: none; font-size: 14px; transition: color 0.2s;">Cart</a>
+        </div>
+
     </div>
 
 
+    <!-- ============ GAME DETAIL PAGE ============ -->
     <div class="game-detail-container">
 
-        <h1 class="game-detail-title">EA SPORTS FC™ 26 The World's Game Edition</h1>
+        <h1 class="game-detail-title" id="gameTitle">EA SPORTS FC™ 26 The World's Game Edition</h1>
 
         <div class="game-rating-bar">
             <div class="stars">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span style="opacity: 0.5;">★</span> <span
-                    class="rating-num">4.1</span>
+                    class="rating-num" id="ratingNum">4.1</span>
             </div>
-            <div class="rating-tag"><span class="rating-icon">🌐</span> Diverse Characters</div>
-            <div class="rating-tag"><span class="rating-icon">⚔️</span> Challenging Combat</div>
+            <div class="rating-tag"><svg class="rating-icon-svg diverse-svg" viewBox="0 0 24 24" fill="#26bbff"><circle cx="12" cy="12" r="10"/></svg> Diverse Characters</div>
+            <div class="rating-tag"><svg class="rating-icon-svg combat-svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6l4-4 11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2-4-4M9 13l-4 4-2-2 4-4M6 6l-2-2"/></svg> Challenging Combat</div>
         </div>
 
         <div class="game-tabs">
@@ -309,41 +316,51 @@
             <a href="#">Achievements</a>
         </div>
 
+        <!-- ===== TWO-COLUMN GRID (Media + Sidebar) ===== -->
         <div class="game-hero-grid">
+
+            <!-- LEFT: Main Content -->
             <div class="game-main-content">
                 <div class="game-media-gallery">
-                    <img src="images/epic/discover/10002.jpg" class="game-main-img">
+                    <div class="main-image-container">
+                        <img src="images/epic/discover/10002.jpg" class="game-main-img" id="mainImage">
+                    </div>
                     <div class="game-thumb-carousel">
-                        <button class="thumb-nav">‹</button>
-                        <div class="thumb-track">
-                            <div class="thumb-box active"><img src="images/epic/discover/10048.jpg" class="thumb-img">
+                        <button class="thumb-nav thumb-prev">‹</button>
+                        <div class="thumb-track" id="thumbTrack">
+                            <div class="thumb-box active">
+                                <img src="images/epic/discover/10048.jpg" class="thumb-img">
                             </div>
-                            <div class="thumb-box"><img src="images/epic/discover/10049.jpg" class="thumb-img"></div>
+                            <div class="thumb-box">
+                                <img src="images/epic/discover/10049.jpg" class="thumb-img">
+                            </div>
                             <div class="thumb-box"><img src="images/epic/discover/10050.jpg" class="thumb-img"></div>
                             <div class="thumb-box"><img src="images/epic/discover/10051.jpg" class="thumb-img"></div>
                             <div class="thumb-box"><img src="images/epic/discover/10052.jpg" class="thumb-img"></div>
                         </div>
-                        <button class="thumb-nav">›</button>
+                        <button class="thumb-nav thumb-next">›</button>
                     </div>
                 </div>
 
                 <div class="game-about-text">
-                    <p>The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay experience
+                    <p id="aboutText">The Club is Yours in EA SPORTS FC™ 26. Play your way with an overhauled gameplay
+                        experience
                         powered by Community feedback, Manager Live Challenges that bring fresh storylines to the new
                         season, and Archetypes inspired by greats of the game.</p>
+                    <a href="#" class="show-more-link" id="showMoreLink" style="display:none;">Show more <span>⌄</span></a>
                 </div>
 
                 <div class="game-tags-row">
                     <div class="tag-group">
                         <span class="tag-label">Genres</span>
-                        <div class="tags">
+                        <div class="tags" id="genreTags">
                             <a href="#">Simulation</a>
                             <a href="#">Sports</a>
                         </div>
                     </div>
                     <div class="tag-group">
                         <span class="tag-label">Features</span>
-                        <div class="tags">
+                        <div class="tags" id="featureTags">
                             <a href="#">Co-op</a>
                             <a href="#">Multiplayer</a>
                             <a href="#">Single Player</a>
@@ -351,354 +368,325 @@
                     </div>
                 </div>
 
-                <div class="ea-play-banner">
-                    <div class="ea-play-logo">
-                        <span class="ea-circle">EA</span> Play
+                <!-- Promotional Banners -->
+                <div class="promotional-banners" id="promoBanners">
+                    <div class="info-banner blue-border-banner">
+                        <p>Save 80% on EA SPORTS FC™ 26 The World's Game Edition available to Epic Games account holders who own the Ultimate or Standard Editions of FC™ 25 and/or FC™ 24 and/or FIFA 23 in the Epic Games Store. Discount applied at checkout.</p>
                     </div>
-                    <div class="ea-play-text">
-                        <h4>Unlock your thrill with EA Play.</h4>
-                        <p>Get unlimited access to a collection of EA's top titles, trials of select new games, in-game
-                            member rewards, and 10% off EA digital purchases.</p>
+
+                    <div class="ea-play-banner-actual">
+                        <div class="ea-play-content">
+                            <div class="ea-play-logo-new">
+                                <span class="ea-circle-logo">ea</span>
+                                <span class="play-text">Play</span>
+                            </div>
+                            <div class="ea-play-text-new">
+                                <h4>Unlock your thrill with EA Play.</h4>
+                                <p>Get unlimited access to a collection of EA's top titles, trials of select new games, in-game member rewards, and 10% off EA digital purchases.</p>
+                            </div>
+                        </div>
+                        <button class="ea-explore-btn">Explore</button>
                     </div>
-                    <button class="ea-play-btn">Explore</button>
                 </div>
 
-                <div class="game-includes-list">
-                    <h3>EA SPORTS FC™ 26 The World's Game Edition Includes:</h3>
-                    <ul>
-                        <li>3,000 Season Points</li>
-                        <li>One Gold Starting XI Pack, with 11 untradeable Rare Gold Player Items (1 Goalkeeper, 4
-                            Defenders, 3 Midfielders, 3 Attackers) rated 84 or higher, with at least one guaranteed 86+
-                            rated player.</li>
+                <div class="game-includes-list" id="includesSection">
+                    <h3 id="includesTitle">Includes:</h3>
+                    <ul id="includesList">
+                        <li>Full game access on release</li>
                     </ul>
-                    <br>
-                    <p>Three Player Picks (all untradeable) from a selection of EA SPORTS FC™ 26 FUT™ campaigns:</p>
-                    <ul>
-                        <li>1 of 5 Elite Campaign Players rated 90-93 OVR §</li>
-                        <li>1 of 5 ICON or Hero Players rated 90-94 OVR §§</li>
-                        <li>1 of 12 International TOTS Players rated up to 95 OVR §§§</li>
-                    </ul>
-                    <br>
-                    <h3>Experience The World's Game like never before in EA SPORTS FC™ 26.</h3>
-                    <p style="color: #a0a0a0;">The latest update introduces a brand-new international tournament mode
-                        featuring 48 national teams, alongside new authentic stadiums...</p>
-                    <a href="#" class="show-more-link">Show more ⋁</a>
                 </div>
-
-                <div class="game-editions-section">
-                    <h2>EA SPORTS FC™ 26 Editions</h2>
-
-                    <div class="edition-card">
-                        <img src="images/epic/discover/10008.jpg" class="edition-img">
-                        <div class="edition-info">
-                            <span class="edition-tag">Base Game</span>
-                            <h3 class="edition-title">EA SPORTS FC™ 26 Standard Edition</h3>
-                            <p class="edition-desc">The Club is Yours in EA SPORTS FC™ 26. Play your way with an
-                                overhauled gameplay experience powered by Community feedback...</p>
-                            <div class="edition-play-promo">
-                                <span><span class="ea-circle" style="width:16px;height:16px;font-size:8px;">EA</span>
-                                    Play</span>
-                                <div class="promo-pricing">
-                                    <span class="promo-price">₹750</span>
-                                    <span class="promo-desc"><span class="ea-circle"
-                                            style="width:12px;height:12px;font-size:6px;background:white;color:black;">EA</span>
-                                        Save 10% with EA Play</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="edition-action">
-                            <button class="btn-blue w-100">Add To Cart</button>
-                            <div class="edition-btn-row">
-                                <button class="btn-gray"><span class="gift-icon">🎁</span></button>
-                                <button class="btn-gray"><span class="wishlist-icon">+</span></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="edition-card">
-                        <img src="images/epic/discover/10048.jpg" class="edition-img">
-                        <div class="edition-info">
-                            <span class="edition-tag">Demo</span>
-                            <h3 class="edition-title">EA SPORTS FC™ 26 SHOWCASE</h3>
-                            <p class="edition-desc">Play select modes in EA SPORTS FC™ 26 Showcase for free!</p>
-                        </div>
-                        <div class="edition-action" style="justify-content: flex-end;">
-                            <button class="btn-blue w-100">Add To Cart</button>
-                            <div class="edition-btn-row" style="margin-top: 10px;">
-                                <button class="btn-gray w-100"><span class="wishlist-icon">+</span></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="edition-card">
-                        <img src="images/epic/discover/10024.png" class="edition-img">
-                        <div class="edition-info">
-                            <span class="edition-tag">Edition</span>
-                            <h3 class="edition-title">EA SPORTS FC™ 26 The World's Game Edition</h3>
-                            <p class="edition-desc">The Club is Yours in EA SPORTS FC™ 26. Play your way with an
-                                overhauled gameplay experience powered by Community feedback...</p>
-                        </div>
-                        <div class="edition-action">
-                            <div class="edition-price-block">
-                                <span class="discount-pill">-80%</span>
-                                <span class="old-price">₹5,499</span>
-                                <span class="new-price">₹1,099.80</span>
-                            </div>
-                            <span class="sale-ends-text">Sale ends 8/18/2026 at 9:30 PM</span>
-                            <button class="btn-blue w-100">Add To Cart</button>
-                            <div class="edition-btn-row">
-                                <button class="btn-gray"><span class="gift-icon">🎁</span></button>
-                                <button class="btn-gray"><span class="wishlist-icon">+</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-sys-reqs">
-                    <h2>EA SPORTS FC™ 26 The World's Game Edition System Requirements</h2>
-                    <div class="sys-req-tabs">
-                        <a href="#" class="active-tab">Windows</a>
-                    </div>
-                    <div class="sys-req-grid">
-                        <div class="req-col">
-                            <h4>Minimum</h4>
-                            <div class="req-item">
-                                <span>OS</span>
-                                <p>Windows 10/11 - 64-Bit (Latest Update)</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Processor</span>
-                                <p>Intel Core i5-6600K @ 3.50GHz or AMD Ryzen 5 1600 @ 3.2 GHZ</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Memory</span>
-                                <p>8 GB</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Storage</span>
-                                <p>100 GB</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Direct X</span>
-                                <p>12 Compatible video card or equivalent (feature level 12_0)</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Graphics</span>
-                                <p>NVIDIA GeForce GTX 1050 Ti 4GB or AMD Radeon RX 570 4GB</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Login Accounts Required</span>
-                                <p>The EA app</p>
-                            </div>
-                        </div>
-                        <div class="req-col">
-                            <h4>Recommended</h4>
-                            <div class="req-item">
-                                <span>OS</span>
-                                <p>Windows 10/11 - 64-Bit (Latest Update)</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Processor</span>
-                                <p>Intel Core i7-6700 @ 3.40GHz or AMD Ryzen 7 2700X @ 3.7 GHZ</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Memory</span>
-                                <p>12 GB</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Storage</span>
-                                <p>100 GB</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Direct X</span>
-                                <p>12 Compatible video card or equivalent (feature level 12_0)</p>
-                            </div>
-                            <div class="req-item">
-                                <span>Graphics</span>
-                                <p>NVIDIA GeForce GTX 1660 or AMD RX 5600 XT</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-legal-block">
-                    <p>Languages Supported<br>AUDIO: English, Arabic, Portuguese - Brazil, Chinese - Simplified, Dutch,
-                        French, German, Japanese, Italian, Korean, Polish, Spanish - Latin America, Spanish - Spain,
-                        Turkish.</p>
-                    <p>TEXT: Arabic, Portuguese - Brazil, Chinese - Simplified, Chinese - Traditional, Czech, Danish,
-                        Dutch, French, German, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Russian,
-                        Spanish - Latin America, Spanish - Spain, Swedish, Turkish, English.</p>
-                    <p class="small-legal">§ Picks pulled from Knockout Royalty, Fantasy FC, FUT Birthday, Answer the
-                        Call and UEFA Road to the Final. §§ Picks pulled from Knockout Royalty, Fantasy FC, FUT Birthday
-                        and Trophy Titans. §§§ Picks include 1 player from each of; Argentina, Brazil, Canada, England,
-                        France, Germany, Mexico, Netherlands, Portugal, Saudi Arabia, Spain, USA. This game includes
-                        optional in-game purchases of virtual currency that can be used to acquire virtual in-game
-                        items, including a random selection of virtual in-game items.<br>
-                        ‡Conditions & restrictions apply. See ea.com/games/ea-sports-fc/fc-26/game-disclaimers for
-                        details. Internet connection, EA Account, Epic Games Account, acceptance of the EA User
-                        Agreement (terms.ea.com), and download, installation and background use of the EA app
-                        (ea.com/ea-app) are required to play. EA's Privacy and Cookie Policy (privacy.ea.com) applies to
-                        your use of EA's Services. You consent to any personal data collected through your use of EA's
-                        services being transferred to the United States, as further explained in the Privacy & Cookie
-                        Policy. EA online activation is required. You must link your EA Account to your Epic Games
-                        account to play. EA will share your Account ID and individual game and play records with Epic
-                        Games to validate your purchases and/or refund requests. Access to software content is limited
-                        to one EA & one Epic Games Account & is non-transferable after purchase. You may need to be 13+
-                        or 16+ to register for an EA Account and to access online features (age may vary, see
-                        o.ea.com/ea/child-access for details) & The World's Game Edition content. Some content may
-                        require gameplay to unlock. Mandatory updates may be downloaded automatically, incur broadband
-                        fees & require additional storage or purchase to access. EA may provide certain free incremental
-                        content &/or updates. Software incorporates 3rd party Digital Rights Management (DRM). EA may
-                        retire online features after 30 days notice posted on www.ea.com/service-updates. EA User
-                        Agreement: terms.ea.com/de for German residents and terms.ea.com for all other residents EA
-                        Privacy & Cookie Policy: privacy.ea.com/de for German residents and privacy.ea.com for all other
-                        residents The World's Game Edition & FC Points purchase are not available in Belgium and South
-                        Korea. Text and audio commentary for languages other than English and the selected Epic client
-                        language requires a separate download. © 2025 Electronic Arts Inc. Electronic Arts, EA, EA
-                        SPORTS, the EA SPORTS logo, EA SPORTS FC, the EA SPORTS FC logo, Frostbite, the Frostbite logo,
-                        Football Ultimate Team, and Ultimate Team are trademarks of Electronic Arts Inc.</p>
-                    <a href="#" class="privacy-link">Privacy Policy <span class="external-icon">↗</span></a>
-                </div>
-
             </div>
 
-
+            <!-- RIGHT: Purchase Sidebar -->
             <div class="game-purchase-sidebar">
-                <div class="sidebar-logo">
-                    <img src="images/fc.png" style="width: 100px; filter: grayscale(1) brightness(2);">
-                </div>
+                <div class="sidebar-sticky">
 
-                <div class="rating-box">
-                    <div class="rating-icon-large">
-                        <span style="font-size:24px; font-weight: bold;">3</span><br>
-                        <span style="font-size:8px; font-weight: bold;">PEGI</span>
+                    <div class="sidebar-logo">
+                        <img src="images/fc.png" style="width: 100px; filter: grayscale(1) brightness(2);"
+                            id="sidebarLogo">
                     </div>
-                    <div class="rating-details">
-                        <strong>PEGI 3</strong><br>
-                        <span>In-Game Purchases</span><br><br>
-                        <span style="color:#a0a0a0;">In-Game Purchases (Includes Random Items)</span>
+
+                    <div class="rating-box">
+                        <div class="rating-icon-large">
+                            <span style="font-size:24px; font-weight: bold;">3</span><br>
+                            <span style="font-size:8px; font-weight: bold;">PEGI</span>
+                        </div>
+                        <div class="rating-details">
+                            <strong>PEGI 3</strong><br>
+                            <span>In-Game Purchases</span><br><br>
+                            <span style="color:#a0a0a0;">In-Game Purchases (Includes Random Items)</span>
+                        </div>
+                    </div>
+
+                    <div class="edition-select-wrap">
+                        <span class="edition-tag" id="sidebarEditionTag">Edition</span>
+                    </div>
+
+                    <div class="sidebar-price-block">
+                        <div class="price-row">
+                            <span class="discount-pill" id="sidebarDiscount">-80%</span>
+                            <span class="old-price" id="sidebarOldPrice">₹5,499</span>
+                            <span class="new-price" id="sidebarNewPrice">₹1,099.80</span>
+                        </div>
+                        <span class="sale-ends-text" id="sidebarSaleEnds">Sale ends 7/30/2026 at 8:30 PM</span>
+                    </div>
+
+                    <!-- Buy Now + Cart row -->
+                    <div class="sidebar-buy-row">
+                        <button class="btn-buy-main">Buy Now</button>
+                        <button class="btn-cart" title="Add to Cart">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Gift button -->
+                    <div class="sidebar-action-row">
+                        <button class="btn-sidebar-action">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 12 7.4l3.38 4.6L17 10.83 14.92 8H20v6z"/>
+                            </svg>
+                            Gift
+                            <span class="new-badge">New!</span>
+                        </button>
+                    </div>
+
+                    <!-- Wishlist button -->
+                    <div class="sidebar-action-row">
+                        <button class="btn-sidebar-action">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            Wishlist
+                        </button>
+                    </div>
+
+                    <!-- Metadata -->
+                    <ul class="game-metadata">
+                        <li>
+                            <span>Epic Rewards</span>
+                            <span class="meta-value">Earn 5% Back instantly
+                                <svg class="epic-rewards-icon-svg" viewBox="0 0 24 24" fill="#26bbff" width="16" height="16"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z"/></svg></span>
+                        </li>
+                        <li>
+                            <span>Refund Type</span>
+                            <span class="meta-value">Non-Refundable
+                                <svg class="meta-help-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><circle cx="12" cy="17" r="1" fill="#a0a0a0" stroke="none"></circle></svg></span>
+                        </li>
+                        <li>
+                            <span>Developer</span>
+                            <span class="meta-value" id="sidebarDeveloper">EA CANADA</span>
+                        </li>
+                        <li>
+                            <span>Publisher</span>
+                            <span class="meta-value" id="sidebarPublisher">Electronic Arts</span>
+                        </li>
+                        <li>
+                            <span>Release Date</span>
+                            <span class="meta-value" id="sidebarReleaseDate">06/04/26</span>
+                        </li>
+                        <li>
+                            <span>Platform</span>
+                            <span class="meta-value">
+                                <svg class="platform-icon-svg" viewBox="0 0 24 24" fill="#a0a0a0" width="16" height="16"><path d="M0 3.449L9.75 2.1v9.418H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.758"/></svg>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="editions-dropdown-link">
+                        See All Editions and Add-Ons <span>⌄</span>
+                    </div>
+
+                    <div class="sidebar-share-row">
+                        <button class="btn-gray-outline">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                            </svg>
+                            Share
+                        </button>
+                        <button class="btn-gray-outline">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/>
+                            </svg>
+                            Report
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- ===== END TWO-COLUMN GRID ===== -->
+
+
+        <!-- ===== FULL-WIDTH SECTIONS (below grid) ===== -->
+
+        <!-- Editions Section -->
+        <div class="game-editions-section" id="editionsSection">
+            <h2 id="editionsTitle">Editions</h2>
+
+            <div class="edition-card" id="editionCard">
+                <div class="edition-card-image">
+                    <img src="images/epic/discover/10002.jpg" id="editionImg">
+                    <div class="edition-platform-overlay">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg> Play
                     </div>
                 </div>
-
-                <div class="edition-select-wrap">
-                    <span class="edition-tag">Edition</span>
-                </div>
-
-                <div class="sidebar-price-block">
-                    <div class="price-row">
-                        <span class="discount-pill">-80%</span>
-                        <span class="old-price">₹5,499</span>
-                        <span class="new-price">₹1,099.80</span>
+                <div class="edition-card-body">
+                    <div class="edition-card-info">
+                        <span class="edition-card-tag" id="editionTag">Base Game</span>
+                        <h3 class="edition-card-title" id="editionTitle">Standard Edition</h3>
+                        <p class="edition-card-desc" id="editionDesc">Full access to the base game.</p>
                     </div>
-                    <span class="sale-ends-text">Sale ends 6/18/2026 at 9:30 PM</span>
-                </div>
-
-                <button class="btn-buy">Buy Now</button>
-                <div class="btn-row">
-                    <button class="btn-gray w-100"
-                        style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;">
-                        <span class="gift-icon">🎁</span> Gift <span class="new-badge">New!</span>
-                    </button>
-                </div>
-                <div class="btn-row" style="margin-top: 10px;">
-                    <button class="btn-gray w-100"
-                        style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;">
-                        <span class="wishlist-icon"
-                            style="border:1px solid white; border-radius:50%; width:16px; height:16px; display:inline-flex; align-items:center; justify-content:center; font-size:12px;">+</span>
-                        Wishlist
-                    </button>
-                </div>
-
-                <ul class="game-metadata">
-                    <li>
-                        <span>Epic Rewards</span>
-                        <span style="color: white; display: flex; align-items: center; gap: 5px;">Earn 5% Back instantly
-                            <span style="color: #0078f2; font-size: 16px;">⬢</span></span>
-                    </li>
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
-                    <li>
-                        <span>Refund Type</span>
-                        <span style="color: white; display: flex; align-items: center; gap: 5px;">Non-Refundable <span
-                                style="border:1px solid #a0a0a0; border-radius:50%; width:14px; height:14px; display:inline-flex; align-items:center; justify-content:center; font-size:10px; color:#a0a0a0;">?</span></span>
-                    </li>
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
-                    <li>
-                        <span>Developer</span>
-                        <span style="color: white;">EA CANADA</span>
-                    </li>
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
-                    <li>
-                        <span>Publisher</span>
-                        <span style="color: white;">Electronic Arts</span>
-                    </li>
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
-                    <li>
-                        <span>Release Date</span>
-                        <span style="color: white;">06/04/26</span>
-                    </li>
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
-                    <li>
-                        <span>Platform</span>
-                        <span style="color: white; font-size: 16px;">🪟</span>
-                    </li>
-                    <div style="border-bottom: 1px solid rgba(255,255,255,0.1); margin: 10px 0;"></div>
-                </ul>
-
-                <div class="editions-dropdown"
-                    style="display:flex; justify-content: space-between; align-items:center; cursor:pointer; font-size: 14px; margin-bottom: 20px;">
-                    See All Editions and Add-Ons <span>⋁</span>
-                </div>
-
-                <div class="sidebar-share-row" style="display:flex; gap:10px;">
-                    <button class="btn-gray-outline w-100"
-                        style="flex:1; display:flex; justify-content:center; align-items:center; gap:8px;"><span
-                            class="icon">🔗</span> Share</button>
-                    <button class="btn-gray-outline w-100"
-                        style="flex:1; display:flex; justify-content:center; align-items:center; gap:8px;"><span
-                            class="icon">🚩</span> Report</button>
+                    <div class="edition-card-divider"></div>
+                    <div class="edition-card-pricing">
+                        <div class="edition-price-row">
+                            <span class="discount-pill" id="editionDiscount">-80%</span>
+                            <span class="old-price" id="editionOldPrice">₹5,499</span>
+                            <span class="new-price" id="editionNewPrice">₹1,099.80</span>
+                        </div>
+                        <span class="edition-sale-text" id="editionSaleEnds">Sale ends 7/30/2026 at 8:30 PM</span>
+                        <div class="edition-card-actions">
+                            <button class="btn-add-to-cart">Add To Cart</button>
+                            <button class="btn-edition-icon" title="Gift">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 12 7.4l3.38 4.6L17 10.83 14.92 8H20v6z"/>
+                                </svg>
+                            </button>
+                            <button class="btn-edition-icon" title="Wishlist">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="game-ratings-section">
-            <h2>Epic Player Ratings</h2>
-            <p class="rating-subtitle">Captured from players in the Epic Games ecosystem.</p>
-            <div class="main-rating">
-                <span class="number">4.1</span>
-                <span class="stars">★★★★☆</span>
-            </div>
-
-            <div class="rating-grid">
-                <div class="rating-card">
-                    <div class="r-icon">🌐</div>
-                    <p>This game has<br><strong>Diverse Characters</strong></p>
-                </div>
-                <div class="rating-card">
-                    <div class="r-icon">⚔️</div>
-                    <p>This game has<br><strong>Challenging Combat</strong></p>
-                </div>
-                <div class="rating-card">
-                    <div class="r-icon">🏆</div>
-                    <p>This game has<br><strong>Competitive Players</strong></p>
-                </div>
-                <div class="rating-card">
-                    <div class="r-icon">🖱️</div>
-                    <p>This game has<br><strong>Quickly Understood Controls</strong></p>
-                </div>
-                <div class="rating-card">
-                    <div class="r-icon">🥊</div>
-                    <p>This game has a<br><strong>Competitive Community</strong></p>
-                </div>
-            </div>
-        </div>
-
+        <!-- Follow Us Section -->
         <div class="game-follow-section">
             <h3>Follow Us</h3>
             <div class="follow-box">
                 <span>🌐</span>
             </div>
         </div>
+
+        <!-- Epic Player Ratings -->
+        <div class="game-ratings-section">
+            <h2>Epic Player Ratings</h2>
+            <p class="rating-subtitle">Captured from players in the Epic Games ecosystem.</p>
+            <div class="main-rating">
+                <span class="number" id="ratingsSectionNumber">4.1</span>
+                <span class="stars">★★★★☆</span>
+            </div>
+
+            <div class="rating-grid">
+                <div class="rating-card">
+                    <div class="r-icon"><svg viewBox="0 0 24 24" fill="#26bbff" width="40" height="40"><circle cx="12" cy="12" r="10"/></svg></div>
+                    <p>This game has<br><strong>Diverse Characters</strong></p>
+                </div>
+                <div class="rating-card">
+                    <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M14.5 17.5L3 6l4-4 11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2-4-4M9 13l-4 4-2-2 4-4M6 6l-2-2"/></svg></div>
+                    <p>This game has<br><strong>Challenging Combat</strong></p>
+                </div>
+                <div class="rating-card">
+                    <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e0b040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+                    <p>This game has<br><strong>Competitive Players</strong></p>
+                </div>
+                <div class="rating-card">
+                    <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg></div>
+                    <p>This game has<br><strong>Quickly Understood Controls</strong></p>
+                </div>
+                <div class="rating-card">
+                    <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <p>This game has a<br><strong>Competitive Community</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Requirements -->
+        <div class="game-sys-reqs">
+            <h2 id="sysReqTitle">System Requirements</h2>
+            <div class="sys-req-tabs">
+                <a href="#" class="active-tab">Windows</a>
+            </div>
+            <div class="sys-req-grid">
+                <div class="req-col">
+                    <h4>Minimum</h4>
+                    <div class="req-item">
+                        <span>OS</span>
+                        <p>Windows 10/11 - 64-Bit (Latest Update)</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Processor</span>
+                        <p>Intel Core i5-6600K @ 3.50GHz or AMD Ryzen 5 1600 @ 3.2 GHZ</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Memory</span>
+                        <p>8 GB</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Storage</span>
+                        <p>100 GB</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Direct X</span>
+                        <p>12 Compatible video card or equivalent (feature level 12_0)</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Graphics</span>
+                        <p>NVIDIA GeForce GTX 1050 Ti 4GB or AMD Radeon RX 570 4GB</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Login Accounts Required</span>
+                        <p>The EA app</p>
+                    </div>
+                </div>
+                <div class="req-col">
+                    <h4>Recommended</h4>
+                    <div class="req-item">
+                        <span>OS</span>
+                        <p>Windows 10/11 - 64-Bit (Latest Update)</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Processor</span>
+                        <p>Intel Core i7-6700 @ 3.40GHz or AMD Ryzen 7 2700X @ 3.7 GHZ</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Memory</span>
+                        <p>12 GB</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Storage</span>
+                        <p>100 GB</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Direct X</span>
+                        <p>12 Compatible video card or equivalent (feature level 12_0)</p>
+                    </div>
+                    <div class="req-item">
+                        <span>Graphics</span>
+                        <p>NVIDIA GeForce GTX 1660 or AMD RX 5600 XT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Block -->
+        <div class="game-legal-block">
+            <p>Languages Supported<br>AUDIO &amp; TEXT: English, French, German, Spanish, Italian, Portuguese,
+                Japanese, Korean, Chinese - Simplified.</p>
+            <p class="small-legal">Internet connection and Epic Games Account required to play. This game may
+                include optional in-game purchases. Content may require gameplay to unlock. &copy; 2026 Publisher.
+                All trademarks are property of their respective owners.</p>
+            <a href="#" class="privacy-link">Privacy Policy <span class="external-icon">↗</span></a>
+        </div>
+
     </div>
+    <!-- ============ END GAME DETAIL PAGE ============ -->
+
 
     <footer class="site-footer">
         <div class="footer-container">
@@ -835,7 +823,10 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <script src="js/games-data.js"></script>
+
     <script src="js/script.js"></script>
+    <script src="js/auth-nav.js"></script>
 
 </body>
 

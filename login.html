@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign in to Epic Games | Epic Games</title>
   <link rel="icon" type="image/png" href="images/logo.png">
-  <!-- Google Fonts for premium typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,6 +25,7 @@
       --error-bg: rgba(242, 66, 66, 0.1);
       --card-btn-bg: #202024;
       --card-btn-hover: #2a2a30;
+      --green: #2ecc40;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
@@ -46,39 +46,27 @@
       padding: 40px 0;
     }
 
-    /* Container holding the card */
     .login-container {
       width: 100%;
       max-width: 540px;
       padding: 0 16px;
     }
 
-    /* The main card */
     .login-card {
       background-color: var(--card-bg);
       border-radius: 12px;
       padding: 60px 50px;
       width: 100%;
-      box-shadow: none;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* Epic Logo */
     .epic-logo {
       color: var(--text-color);
       margin-bottom: 24px;
     }
 
-    .epic-logo svg {
-      width: 44px;
-      height: 52px;
-      display: block;
-      fill: currentColor;
-    }
-
-    /* Heading */
     .login-title {
       font-size: 20px;
       font-weight: 700;
@@ -87,13 +75,11 @@
       letter-spacing: -0.2px;
     }
 
-    /* Form */
     .login-form {
       width: 100%;
       margin-bottom: 20px;
     }
 
-    /* Input Group styling */
     .input-group {
       position: relative;
       width: 100%;
@@ -114,7 +100,6 @@
       transition: border-color 0.15s ease, background-color 0.15s ease;
     }
 
-    /* Floating label effect */
     .input-label {
       position: absolute;
       left: 16px;
@@ -126,7 +111,6 @@
       transition: all 0.15s ease;
     }
 
-    /* Focus and active states */
     .input-field:focus {
       border-color: var(--input-focus-border);
       background-color: #25252a;
@@ -140,7 +124,6 @@
       transform: none;
     }
 
-    /* Error state styles */
     .input-group.has-error .input-field {
       border-color: var(--error-color) !important;
     }
@@ -149,7 +132,6 @@
       color: var(--error-color);
     }
 
-    /* Error message */
     .error-message {
       display: none;
       align-items: center;
@@ -173,7 +155,6 @@
       height: 14px;
     }
 
-    /* Submit Button */
     .submit-btn {
       width: 100%;
       height: 56px;
@@ -199,7 +180,6 @@
       opacity: 0.9;
     }
 
-    /* Links */
     .signup-text {
       font-size: 13px;
       color: var(--text-secondary);
@@ -211,13 +191,13 @@
       color: var(--primary-blue);
       text-decoration: underline;
       transition: color 0.15s ease;
+      cursor: pointer;
     }
 
     .signup-link:hover {
       color: var(--text-color);
     }
 
-    /* Divider */
     .divider-container {
       width: 100%;
       text-align: center;
@@ -231,7 +211,6 @@
       display: block;
     }
 
-    /* Section Headings */
     .section-title {
       font-size: 13px;
       font-weight: 700;
@@ -247,7 +226,6 @@
       margin-bottom: 16px;
     }
 
-    /* Grid Layout for Social buttons */
     .social-grid {
       display: grid;
       width: 100%;
@@ -259,7 +237,6 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    /* Social/Console Button */
     .social-btn {
       background-color: var(--card-btn-bg);
       border: 1px solid transparent;
@@ -305,7 +282,6 @@
       color: var(--text-color);
     }
 
-    /* Specific Social Icon Colors & Wrappers */
     .bg-playstation {
       background-color: #003087;
     }
@@ -347,7 +323,6 @@
       background-color: #ffffff;
     }
 
-    /* Bottom Help Links */
     .bottom-links {
       display: flex;
       flex-direction: column;
@@ -369,7 +344,6 @@
       color: var(--text-color);
     }
 
-    /* SVG & Image dimensions */
     .social-icon-wrapper svg,
     .social-icon-wrapper img {
       width: 20px;
@@ -379,14 +353,849 @@
       object-fit: contain;
     }
 
-    /* LEGO SVG/Image is square-ish */
     .bg-lego svg,
     .bg-lego img {
       width: 24px;
       height: 24px;
     }
 
-    /* Responsive styling */
+    /* ===== SCREEN VISIBILITY ===== */
+    .screen {
+      display: none;
+      width: 100%;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* ===== BACK BUTTON ===== */
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 28px;
+      align-self: flex-start;
+      transition: opacity 0.15s ease;
+    }
+
+    .back-btn:hover {
+      opacity: 0.7;
+    }
+
+    .back-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ===== SCREEN: HAVE YOU PLAYED ===== */
+    .played-question {
+      font-size: 18px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .games-banner {
+      display: flex;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .games-banner img {
+      width: 33.333%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-yes {
+      width: 100%;
+      height: 48px;
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      margin-bottom: 10px;
+    }
+
+    .btn-yes:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .btn-no {
+      width: 100%;
+      height: 48px;
+      background-color: #35353a;
+      color: var(--text-color);
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-no:hover {
+      background-color: #404048;
+    }
+
+    /* ===== SCREEN: ALREADY HAVE ACCOUNT ===== */
+    .warning-icon {
+      width: 56px;
+      height: 56px;
+      border: 3px solid #f5a623;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px auto;
+    }
+
+    .warning-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #f5a623;
+    }
+
+    .already-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    .already-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .btn-sign-another {
+      width: 100%;
+      height: 48px;
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      margin-top: 12px;
+    }
+
+    .btn-sign-another:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    /* ===== SCREEN: DATE OF BIRTH ===== */
+    .dob-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      align-self: flex-start;
+    }
+
+    .dob-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+
+    .dob-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .dob-select,
+    .dob-input {
+      height: 48px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 0 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .dob-select {
+      flex: 1.4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23a0a0a5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+
+    .dob-input {
+      flex: 1;
+    }
+
+    .dob-select:focus,
+    .dob-input:focus {
+      border-color: var(--input-focus-border);
+      color: var(--text-color);
+    }
+
+    .dob-select option {
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+
+    .dob-continue-btn {
+      width: 100%;
+      height: 48px;
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      margin-bottom: 20px;
+    }
+
+    .dob-continue-btn:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .dob-footer-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .dob-footer-link {
+      color: var(--primary-blue);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .dob-footer-link:hover {
+      color: var(--text-color);
+    }
+
+    /* ===== SCREEN: WHAT'S YOUR EMAIL ===== */
+    .email-screen-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      align-self: flex-start;
+    }
+
+    .email-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+
+    .email-input-reg {
+      width: 100%;
+      height: 48px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 0 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+      margin-bottom: 16px;
+    }
+
+    .email-input-reg:focus {
+      border-color: var(--input-focus-border);
+    }
+
+    .email-continue-btn {
+      width: 100%;
+      height: 48px;
+      background-color: #35353a;
+      color: var(--text-secondary);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: default;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      margin-bottom: 20px;
+    }
+
+    .email-continue-btn.enabled {
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      cursor: pointer;
+    }
+
+    .email-continue-btn.enabled:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #2a2a30;
+    }
+
+    .or-divider span {
+      padding: 0 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .social-login-btn {
+      width: 100%;
+      height: 48px;
+      background-color: #2a2a30;
+      border: none;
+      border-radius: 30px;
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      margin-bottom: 10px;
+      transition: background-color 0.15s ease;
+    }
+
+    .social-login-btn:hover {
+      background-color: #35353a;
+    }
+
+    .social-login-btn .social-icon-inline {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .social-login-btn .social-icon-inline img {
+      width: 28px;
+      height: 28px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .social-login-btn span.btn-label {
+      flex: 1;
+      text-align: center;
+      padding-right: 42px;
+    }
+
+    .email-footer-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+
+    .email-footer-link {
+      color: var(--primary-blue);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .email-footer-link:hover {
+      color: var(--text-color);
+    }
+
+    .login-card.left-aligned {
+      align-items: flex-start;
+    }
+
+    /* ===== SCREEN: ADD YOUR DETAILS ===== */
+    .details-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      align-self: flex-start;
+    }
+
+    .field-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .reg-input {
+      width: 100%;
+      height: 48px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 0 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+      margin-bottom: 16px;
+    }
+
+    .reg-input:focus {
+      border-color: var(--input-focus-border);
+    }
+
+    .reg-input.readonly {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    .reg-input.error-border {
+      border-color: var(--error-color) !important;
+    }
+
+    .name-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .name-col {
+      flex: 1;
+    }
+
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .password-wrapper .reg-input {
+      margin-bottom: 0;
+      padding-right: 48px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+
+    .password-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pw-constraints {
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .pw-required {
+      color: var(--error-color);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pw-required svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--error-color);
+    }
+
+    .pw-rule {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .pw-rule .bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .pw-rule.met {
+      color: var(--green);
+    }
+
+    .pw-rule.met .bullet {
+      background: none;
+    }
+
+    .pw-rule .check-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pw-rule .check-circle svg {
+      width: 10px;
+      height: 10px;
+      fill: #000;
+    }
+
+    .display-name-wrapper {
+      position: relative;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .display-name-wrapper .reg-input {
+      padding-right: 70px;
+      margin-bottom: 0;
+    }
+
+    .dn-counter {
+      position: absolute;
+      right: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .dn-actions {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .dn-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dn-check svg {
+      width: 12px;
+      height: 12px;
+      fill: #000;
+    }
+
+    .dn-refresh {
+      width: 24px;
+      height: 24px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .dn-refresh:hover {
+      transform: rotate(180deg);
+    }
+
+    .dn-refresh svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      width: 100%;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .checkbox-row label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .checkbox-row label a {
+      color: var(--primary-blue);
+      text-decoration: underline;
+    }
+
+    .checkbox-error {
+      color: var(--error-color);
+      font-size: 12px;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .reg-continue-btn {
+      width: 100%;
+      height: 48px;
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      margin-bottom: 16px;
+    }
+
+    .reg-continue-btn:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .field-error-msg {
+      color: var(--error-color);
+      font-size: 12px;
+      margin-top: -12px;
+      margin-bottom: 8px;
+      display: none;
+    }
+
+    /* ===== SCREEN: OTP ===== */
+    .otp-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+
+    .otp-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .otp-subtitle strong {
+      color: var(--text-color);
+    }
+
+    .otp-inputs {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 24px;
+      justify-content: center;
+    }
+
+    .otp-inputs input {
+      width: 48px;
+      height: 56px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .otp-inputs input:focus {
+      border-color: var(--input-focus-border);
+    }
+
+    .otp-inputs .otp-gap {
+      width: 12px;
+    }
+
+    .otp-continue-btn {
+      width: 100%;
+      height: 48px;
+      background-color: #35353a;
+      color: var(--text-secondary);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: default;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      margin-bottom: 16px;
+    }
+
+    .otp-continue-btn.enabled {
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      cursor: pointer;
+    }
+
+    .otp-continue-btn.enabled:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .otp-resend {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: center;
+      width: 100%;
+    }
+
+    .otp-resend a {
+      color: var(--primary-blue);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .otp-error {
+      color: var(--error-color);
+      font-size: 13px;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 8px;
+      display: none;
+    }
+
+    /* ===== SCREEN: ENTER PASSWORD (Sign-in) ===== */
+    .pw-screen-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+
+    .pw-screen-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .signin-password-btn {
+      width: 100%;
+      height: 48px;
+      background-color: var(--primary-blue);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      margin-bottom: 16px;
+    }
+
+    .signin-password-btn:hover {
+      background-color: var(--primary-blue-hover);
+    }
+
+    .forgot-link {
+      color: var(--primary-blue);
+      text-decoration: underline;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .forgot-link:hover {
+      color: var(--text-color);
+    }
+
+    .signin-error {
+      color: var(--error-color);
+      font-size: 13px;
+      margin-bottom: 8px;
+      display: none;
+    }
+
+    /* ===== TRANSITIONS ===== */
+    .screen {
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 480px) {
       .login-card {
         padding: 35px 20px;
@@ -395,6 +1204,16 @@
       .social-name {
         font-size: 9px;
       }
+
+      .games-banner img {
+        height: 140px;
+      }
+
+      .otp-inputs input {
+        width: 40px;
+        height: 48px;
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -402,200 +1221,738 @@
 <body>
 
   <div class="login-container">
-    <div class="login-card">
+    <div class="login-card" id="loginCard">
 
-      <!-- Epic Games Shield Logo -->
-      <div class="epic-logo">
-        <!-- <svg viewBox="0 0 44 52" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M22 0L0 5.4v13.6C0 35.6 11.2 47.7 22 52c10.8-4.3 22-16.4 22-33V5.4L22 0zm16.7 34.6c-2.4 4.8-6.9 8.2-12.3 9.4v-4.1c0-.9-.7-1.6-1.6-1.6h-.7c-.9 0-1.6.7-1.6 1.6v4.1c-5.4-1.2-9.9-4.6-12.3-9.4-.5-.9-.2-2 .7-2.5.9-.5 2-.2 2.5.7 1.8 3.5 5.1 6 9.1 6.8V23.7c0-1.1-.9-2-2-2h-3.3c-1.1 0-2-.9-2-2v-3.3c0-1.1.9-2 2-2h3.3c1.1 0 2-.9 2-2V9.8c0-.9.7-1.6 1.6-1.6h1.4c.9 0 1.6.7 1.6 1.6v2.6c0 1.1.9 2 2 2H35c1.1 0 2 .9 2 2v3.3c0 1.1-.9 2-2 2h-3.3c-1.1 0-2 .9-2 2v15.9c4-.8 7.3-3.3 9.1-6.8.5-.9 1.6-1.2 2.5-.7.9.5 1.2 1.6.7 2.5z" />
-        </svg> -->
-        <img style="width: 55px;" src="images/epic/login/epic.png" alt="">
+      <!-- ========== SCREEN 1: SIGN IN ========== -->
+      <div class="screen active" id="screenSignIn">
+        <div style="display:flex;flex-direction:column;align-items:center;width:100%;">
+          <div class="epic-logo"><img style="width: 55px;" src="images/epic/login/epic.png" alt=""></div>
+          <h1 class="login-title">Sign in to Epic Games</h1>
+          <form class="login-form" id="loginForm" novalidate>
+            <div class="input-group" id="emailGroup">
+              <input type="email" id="email" class="input-field" placeholder=" " required autocomplete="email">
+              <label for="email" class="input-label">Email address</label>
+            </div>
+            <div class="error-message" id="emailError">
+              <span class="error-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                </svg></span>
+              <span id="emailErrorText">Enter a valid email address</span>
+            </div>
+            <button type="submit" class="submit-btn">Continue</button>
+          </form>
+          <div class="signup-text">New here? <a href="#" class="signup-link" id="createAccountLink">Create an
+              account</a></div>
+          <div class="divider-container"><span class="divider-line"></span></div>
+          <h2 class="section-title">Only played on console?</h2>
+          <p class="section-subtitle">Sign in to access your progress and purchases</p>
+          <div class="social-grid grid-3">
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-playstation"><img src="images/epic/login/123123 (1).svg"
+                  alt="PlayStation"></div><span class="social-name">PlayStation™<br>Network</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-xbox"><img src="images/epic/login/123123 (2).svg" alt="Xbox"></div>
+              <span class="social-name">Xbox<br>network</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-nintendo"><img src="images/epic/login/123123 (3).svg" alt="Nintendo">
+              </div><span class="social-name">Nintendo<br>Account</span>
+            </a>
+          </div>
+          <h2 class="section-title">Other ways to sign in</h2>
+          <div style="height: 16px;"></div>
+          <div class="social-grid grid-3">
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-google"><img src="images/epic/login/google.svg" alt="Google"></div>
+              <span class="social-name">Google</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-steam"><img src="images/epic/login/123123 (5).svg" alt="Steam"></div>
+              <span class="social-name">Steam</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-disney"><img src="images/epic/login/disney.svg" alt="Disney"></div>
+              <span class="social-name">Disney</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-apple"><img src="images/epic/login/apple.jpg" alt="Apple"></div><span
+                class="social-name">Sign in with Apple</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-facebook"><img src="images/epic/login/123123 (7).svg" alt="Facebook">
+              </div><span class="social-name">Facebook</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-lego"><img src="images/epic/login/lego.svg" alt="LEGO"></div><span
+                class="social-name">LEGO® Account</span>
+            </a>
+            <a href="#" class="social-btn">
+              <div class="social-icon-wrapper bg-autodesk"><img src="images/epic/login/desk.svg" alt="Autodesk"></div>
+              <span class="social-name">Autodesk</span>
+            </a>
+          </div>
+          <div class="bottom-links">
+            <a href="#" class="bottom-link">Trouble signing in?</a>
+            <a href="#" class="bottom-link">Privacy Policy</a>
+          </div>
+        </div>
       </div>
 
-      <h1 class="login-title">Sign in to Epic Games</h1>
-
-      <!-- Login Form -->
-      <form class="login-form" id="loginForm" novalidate>
-        <div class="input-group" id="emailGroup">
-          <input type="email" id="email" class="input-field" placeholder=" " required autocomplete="email">
-          <label for="email" class="input-label">Email address</label>
+      <!-- ========== SCREEN 2: HAVE YOU PLAYED? ========== -->
+      <div class="screen" id="screenPlayed">
+        <div style="display:flex;flex-direction:column;align-items:center;width:100%;">
+          <button class="back-btn" id="backFromPlayed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <div class="epic-logo"><img style="width: 55px;" src="images/epic/login/epic.png" alt=""></div>
+          <p class="played-question">Have you played any of these games on your console, mobile, or PC?</p>
+          <div class="games-banner">
+            <img src="images/epic/discover/rock.jpg" alt="Rocket League">
+            <img src="images/epic/discover/f_card.jpg" alt="Fortnite">
+            <img src="images/epic/discover/sifu.jpg" alt="Sifu">
+          </div>
+          <button class="btn-yes" id="btnYes">Yes</button>
+          <button class="btn-no" id="btnNo">No</button>
         </div>
+      </div>
 
-        <!-- Error Message block -->
-        <div class="error-message" id="emailError">
-          <span class="error-icon">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+      <!-- ========== SCREEN 3: ALREADY HAVE ACCOUNT ========== -->
+      <div class="screen" id="screenAlready">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;">
+          <button class="back-btn" id="backFromAlready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <div class="warning-icon"><svg viewBox="0 0 24 24">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-            </svg>
-          </span>
-          Enter a valid email address
+            </svg></div>
+          <h2 class="already-title">If you've played our games, you already have an account</h2>
+          <p class="already-desc">To access your progress and purchases, sign in with the console account you normally
+            play on.</p>
+          <p class="already-desc">If you play on PC or mobile, sign in with email.</p>
+          <button class="btn-sign-another" id="btnSignAnother">Sign in another way</button>
         </div>
-
-        <button type="submit" class="submit-btn">Continue</button>
-      </form>
-
-      <div class="signup-text">
-        New here? <a href="#" class="signup-link">Create an account</a>
       </div>
 
-      <!-- Console Section -->
-      <div class="divider-container">
-        <span class="divider-line"></span>
+      <!-- ========== SCREEN 4: DATE OF BIRTH ========== -->
+      <div class="screen" id="screenDOB">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;">
+          <button class="back-btn" id="backFromDOB"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <h2 class="dob-title">Enter your date of birth</h2>
+          <label class="dob-label">Date of birth</label>
+          <div class="dob-row">
+            <select class="dob-select" id="dobMonth">
+              <option value="" disabled selected>Month</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <input type="text" class="dob-input" id="dobDay" placeholder="Day" maxlength="2">
+            <input type="text" class="dob-input" id="dobYear" placeholder="Year" maxlength="4">
+          </div>
+          <button class="dob-continue-btn" id="dobContinueBtn">Continue</button>
+          <p class="dob-footer-text">Already have an account? <a href="#" class="dob-footer-link"
+              id="dobSignInLink">Sign in</a></p>
+          <p style="text-align:center;width:100%;"><a href="#" class="dob-footer-link">Privacy Policy</a></p>
+        </div>
       </div>
 
-      <h2 class="section-title">Only played on console?</h2>
-      <p class="section-subtitle">Sign in to access your progress and purchases</p>
-
-      <div class="social-grid grid-3">
-        <!-- PlayStation Network -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-playstation">
-            <img src="images/epic/login/123123 (1).svg" alt="PlayStation">
-          </div>
-          <span class="social-name">PlayStation™<br>Network</span>
-        </a>
-
-        <!-- Xbox network -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-xbox">
-            <img src="images/epic/login/123123 (2).svg" alt="Xbox">
-          </div>
-          <span class="social-name">Xbox<br>network</span>
-        </a>
-
-        <!-- Nintendo Account -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-nintendo">
-            <img src="images/epic/login/123123 (3).svg" alt="Nintendo">
-          </div>
-          <span class="social-name">Nintendo<br>Account</span>
-        </a>
+      <!-- ========== SCREEN 5: WHAT'S YOUR EMAIL ========== -->
+      <div class="screen" id="screenEmail">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;">
+          <button class="back-btn" id="backFromEmail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <h2 class="email-screen-title">What's your email?</h2>
+          <label class="email-label">Email address</label>
+          <input type="email" class="email-input-reg" id="regEmailInput" placeholder=" ">
+          <button class="email-continue-btn" id="emailContinueBtn">Continue</button>
+          <div class="or-divider"><span>or</span></div>
+          <button class="social-login-btn">
+            <div class="social-icon-wrapper bg-google" style="margin-top:5px;"><img src="images/epic/login/google.svg"
+                alt="Google"></div><span class="btn-label">Continue with Google</span>
+          </button>
+          <button class="social-login-btn">
+            <div class="social-icon-inline"><img src="images/epic/login/apple.jpg" alt="Apple"
+                style="border-radius:50%;"></div><span class="btn-label">Continue with Apple</span>
+          </button>
+          <button class="social-login-btn">
+            <div class="social-icon-wrapper bg-autodesk"><img src="images/epic/login/desk.svg" alt="Autodesk"></div>
+            <span class="btn-label">Continue with Autodesk</span>
+          </button>
+          <p class="email-footer-text">Already have an account? <a href="#" class="email-footer-link"
+              id="emailSignInLink">Sign in</a></p>
+          <p style="text-align:center;width:100%;"><a href="#" class="email-footer-link">Privacy Policy</a></p>
+        </div>
       </div>
 
-      <!-- Other Ways Section -->
-      <h2 class="section-title">Other ways to sign in</h2>
-      <div style="height: 16px;"></div>
+      <!-- ========== SCREEN 6: ADD YOUR DETAILS ========== -->
+      <div class="screen" id="screenDetails">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;">
+          <button class="back-btn" id="backFromDetails"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <h2 class="details-title">Add your details</h2>
 
-      <div class="social-grid grid-3">
-        <!-- Google -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-google">
-            <img src="images/epic/login/google.svg" alt="Google">
-          </div>
-          <span class="social-name">Google</span>
-        </a>
+          <label class="field-label">Email address</label>
+          <input type="email" class="reg-input readonly" id="detailsEmail" readonly>
 
-        <!-- Steam -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-steam">
-            <img src="images/epic/login/123123 (5).svg" alt="Steam">
+          <div class="name-row">
+            <div class="name-col">
+              <label class="field-label">First name</label>
+              <input type="text" class="reg-input" id="regFirstName" placeholder=" ">
+              <div class="field-error-msg" id="firstNameError">First name is required</div>
+            </div>
+            <div class="name-col">
+              <label class="field-label">Last name</label>
+              <input type="text" class="reg-input" id="regLastName" placeholder=" ">
+              <div class="field-error-msg" id="lastNameError">Last name is required</div>
+            </div>
           </div>
-          <span class="social-name">Steam</span>
-        </a>
 
-        <!-- Disney -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-disney">
-            <img src="images/epic/login/disney.svg" alt="Disney">
+          <label class="field-label">Create password</label>
+          <div class="password-wrapper">
+            <input type="password" class="reg-input" id="regPassword" placeholder=" ">
+            <button type="button" class="password-toggle" id="pwToggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
           </div>
-          <span class="social-name">Disney</span>
-        </a>
+          <div class="pw-constraints" id="pwConstraints">
+            <div class="pw-required" id="pwRequired" style="display:none;">
+              <svg viewBox="0 0 24 24">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-8h2v8z" />
+              </svg>
+              Required
+            </div>
+            <div class="pw-rule" id="ruleHasLetter">
+              <span class="bullet"></span> At least one letter
+            </div>
+            <div class="pw-rule" id="ruleHasNumber">
+              <span class="bullet"></span> At least one number
+            </div>
+            <div class="pw-rule" id="ruleMinLength">
+              <span class="bullet"></span> Minimum 7 characters
+            </div>
+          </div>
 
-        <!-- Sign in with Apple -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-apple">
-            <img src="images/epic/login/apple.jpg" alt="Apple">
+          <label class="field-label">Display Name</label>
+          <div class="display-name-wrapper">
+            <input type="text" class="reg-input" id="regDisplayName" maxlength="16" placeholder=" ">
+            <span class="dn-counter" id="dnCounter">0/16</span>
+            <div class="dn-actions">
+              <div class="dn-check" id="dnCheck" style="display:none;">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+              </div>
+              <button type="button" class="dn-refresh" id="dnRefresh" title="Generate random name">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M23 4v6h-6" />
+                  <path d="M1 20v-6h6" />
+                  <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+                </svg>
+              </button>
+            </div>
           </div>
-          <span class="social-name">Sign in with Apple</span>
-        </a>
+          <div class="field-error-msg" id="displayNameError">Display name is required</div>
 
-        <!-- Facebook -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-facebook">
-            <img src="images/epic/login/123123 (7).svg" alt="Facebook">
+          <div class="checkbox-row">
+            <input type="checkbox" id="agreeTerms">
+            <label for="agreeTerms">I have read and agree to the <a href="#">Terms of Service</a> and the <a
+                href="#">Epic Games Store End User License Agreement</a> *</label>
           </div>
-          <span class="social-name">Facebook</span>
-        </a>
+          <div class="checkbox-error" id="termsError">Accept to continue</div>
 
-        <!-- LEGO Account -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-lego">
-            <img src="images/epic/login/lego.svg" alt="LEGO">
+          <div class="checkbox-row">
+            <input type="checkbox" id="agreeNewsletter">
+            <label for="agreeNewsletter">Send news, surveys, and offers from Epic Games (Optional)</label>
           </div>
-          <span class="social-name">LEGO® Account</span>
-        </a>
 
-        <!-- Autodesk -->
-        <a href="#" class="social-btn">
-          <div class="social-icon-wrapper bg-autodesk">
-            <img src="images/epic/login/desk.svg" alt="Autodesk">
-          </div>
-          <span class="social-name">Autodesk</span>
-        </a>
+          <button class="reg-continue-btn" id="regContinueBtn">Continue</button>
+          <p style="text-align:center;width:100%;"><a href="#" class="dob-footer-link">Privacy Policy</a></p>
+        </div>
       </div>
 
-      <!-- Bottom Links -->
-      <div class="bottom-links">
-        <a href="#" class="bottom-link">Trouble signing in?</a>
-        <a href="#" class="bottom-link">Privacy Policy</a>
+      <!-- ========== SCREEN 7: CHECK YOUR INBOX (OTP) ========== -->
+      <div class="screen" id="screenOTP">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;">
+          <button class="back-btn" id="backFromOTP"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <h2 class="otp-title">Check your inbox</h2>
+          <p class="otp-subtitle">Enter the 6-digit security code we sent to<br><strong
+              id="otpMaskedEmail">s***e@gmail.com</strong>.</p>
+          <div class="otp-inputs" id="otpInputs">
+            <input type="text" maxlength="1" inputmode="numeric" class="otp-digit" data-index="0">
+            <input type="text" maxlength="1" inputmode="numeric" class="otp-digit" data-index="1">
+            <input type="text" maxlength="1" inputmode="numeric" class="otp-digit" data-index="2">
+            <div class="otp-gap"></div>
+            <input type="text" maxlength="1" inputmode="numeric" class="otp-digit" data-index="3">
+            <input type="text" maxlength="1" inputmode="numeric" class="otp-digit" data-index="4">
+            <input type="text" maxlength="1" inputmode="numeric" class="otp-digit" data-index="5">
+          </div>
+          <div class="otp-error" id="otpError">Invalid or expired code</div>
+          <button class="otp-continue-btn" id="otpContinueBtn">Continue</button>
+          <p class="otp-resend" id="otpResend">Resend Email in <span id="otpTimer">30</span>s</p>
+        </div>
+      </div>
+
+      <!-- ========== SCREEN 8: ENTER YOUR PASSWORD (Sign-in) ========== -->
+      <div class="screen" id="screenPassword">
+        <div style="display:flex;flex-direction:column;align-items:flex-start;width:100%;">
+          <button class="back-btn" id="backFromPassword"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg> Back</button>
+          <h2 class="pw-screen-title">Enter your password</h2>
+          <p class="pw-screen-subtitle">You're signing in as <strong id="pwEmailDisplay"></strong>.</p>
+
+          <label class="field-label">Password</label>
+          <div class="password-wrapper" style="margin-bottom:8px;">
+            <input type="password" class="reg-input" id="signinPassword" placeholder=" " style="margin-bottom:0;">
+            <button type="button" class="password-toggle" id="signinPwToggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+          <div class="signin-error" id="signinError">Incorrect password</div>
+
+          <a href="#" class="forgot-link">Forgot your password?</a>
+
+          <button class="signin-password-btn" id="signinPasswordBtn">Sign in</button>
+          <p style="text-align:center;width:100%;"><a href="#" class="dob-footer-link">Privacy Policy</a></p>
+        </div>
       </div>
 
     </div>
   </div>
 
   <script>
+    const API_BASE = 'http://localhost:3000';
+
     document.addEventListener('DOMContentLoaded', () => {
+      const loginCard = document.getElementById('loginCard');
+      const screens = document.querySelectorAll('.screen');
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      // Shared state
+      let currentEmail = '';
+      let currentDOB = '';
+      let otpTimerInterval = null;
+      let otpFlow = ''; // 'register' or 'signin'
+
+      // Screen refs
+      const screenSignIn = document.getElementById('screenSignIn');
+      const screenPlayed = document.getElementById('screenPlayed');
+      const screenAlready = document.getElementById('screenAlready');
+      const screenDOB = document.getElementById('screenDOB');
+      const screenEmail = document.getElementById('screenEmail');
+      const screenDetails = document.getElementById('screenDetails');
+      const screenOTP = document.getElementById('screenOTP');
+      const screenPassword = document.getElementById('screenPassword');
+
+      function showScreen(screen) {
+        screens.forEach(s => s.classList.remove('active'));
+        screen.classList.add('active');
+        if ([screenAlready, screenDOB, screenEmail, screenDetails, screenOTP, screenPassword].includes(screen)) {
+          loginCard.classList.add('left-aligned');
+        } else {
+          loginCard.classList.remove('left-aligned');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // ==================== SCREEN 1: SIGN IN ====================
       const loginForm = document.getElementById('loginForm');
       const emailInput = document.getElementById('email');
       const emailGroup = document.getElementById('emailGroup');
+      const emailErrorText = document.getElementById('emailErrorText');
 
-      // Regular Expression for validating email addresses
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-      function validateEmail() {
-        const emailValue = emailInput.value.trim();
-
-        if (!emailValue || !emailRegex.test(emailValue)) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const val = emailInput.value.trim();
+        if (!val || !emailRegex.test(val)) {
+          emailErrorText.textContent = 'Enter a valid email address';
           emailGroup.classList.add('has-error');
-          return false;
-        } else {
-          emailGroup.classList.remove('has-error');
-          return true;
+          return;
+        }
+        emailGroup.classList.remove('has-error');
+        currentEmail = val;
+
+        try {
+          const res = await fetch(`${API_BASE}/api/check-email`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: val })
+          });
+          const data = await res.json();
+          if (data.exists) {
+            document.getElementById('pwEmailDisplay').textContent = val;
+            showScreen(screenPassword);
+          } else {
+            emailErrorText.textContent = 'Account not found. Create an account instead.';
+            emailGroup.classList.add('has-error');
+          }
+        } catch (err) {
+          emailErrorText.textContent = 'Server not available. Please start the server.';
+          emailGroup.classList.add('has-error');
+        }
+      });
+
+      emailInput.addEventListener('input', () => {
+        if (emailRegex.test(emailInput.value.trim())) emailGroup.classList.remove('has-error');
+      });
+
+      // ==================== SCREEN 2: PLAYED ====================
+      document.getElementById('createAccountLink').addEventListener('click', (e) => { e.preventDefault(); showScreen(screenPlayed); });
+      document.getElementById('backFromPlayed').addEventListener('click', () => showScreen(screenSignIn));
+      document.getElementById('btnYes').addEventListener('click', () => showScreen(screenAlready));
+      document.getElementById('btnNo').addEventListener('click', () => showScreen(screenDOB));
+
+      // ==================== SCREEN 3: ALREADY ====================
+      document.getElementById('backFromAlready').addEventListener('click', () => showScreen(screenPlayed));
+      document.getElementById('btnSignAnother').addEventListener('click', () => showScreen(screenSignIn));
+
+      // ==================== SCREEN 4: DOB ====================
+      document.getElementById('backFromDOB').addEventListener('click', () => showScreen(screenPlayed));
+      document.getElementById('dobSignInLink').addEventListener('click', (e) => { e.preventDefault(); showScreen(screenSignIn); });
+      document.getElementById('dobContinueBtn').addEventListener('click', () => {
+        const m = document.getElementById('dobMonth').value;
+        const d = document.getElementById('dobDay').value.trim();
+        const y = document.getElementById('dobYear').value.trim();
+        if (m && d && y && y.length === 4) {
+          currentDOB = `${y}-${m}-${d.padStart(2, '0')}`;
+          showScreen(screenEmail);
+        }
+      });
+
+      // ==================== SCREEN 5: EMAIL ====================
+      const regEmailInput = document.getElementById('regEmailInput');
+      const emailContinueBtn = document.getElementById('emailContinueBtn');
+
+      document.getElementById('backFromEmail').addEventListener('click', () => showScreen(screenDOB));
+      document.getElementById('emailSignInLink').addEventListener('click', (e) => { e.preventDefault(); showScreen(screenSignIn); });
+
+      regEmailInput.addEventListener('input', () => {
+        emailContinueBtn.classList.toggle('enabled', emailRegex.test(regEmailInput.value.trim()));
+      });
+
+      emailContinueBtn.addEventListener('click', () => {
+        if (!emailContinueBtn.classList.contains('enabled')) return;
+        currentEmail = regEmailInput.value.trim();
+        document.getElementById('detailsEmail').value = currentEmail;
+        fetchRandomName();
+        showScreen(screenDetails);
+      });
+
+      // ==================== SCREEN 6: ADD DETAILS ====================
+      document.getElementById('backFromDetails').addEventListener('click', () => showScreen(screenEmail));
+
+      // Password toggle
+      document.getElementById('pwToggle').addEventListener('click', () => {
+        const inp = document.getElementById('regPassword');
+        inp.type = inp.type === 'password' ? 'text' : 'password';
+      });
+
+      // Password live validation
+      const regPassword = document.getElementById('regPassword');
+      const ruleHasLetter = document.getElementById('ruleHasLetter');
+      const ruleHasNumber = document.getElementById('ruleHasNumber');
+      const ruleMinLength = document.getElementById('ruleMinLength');
+      const pwRequired = document.getElementById('pwRequired');
+
+      function updatePwRule(el, met) {
+        if (met) {
+          el.classList.add('met');
+          el.innerHTML = `<span class="check-circle"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> ${el.textContent.replace(/^[✓●]\s*/, '')}`;
         }
       }
 
-      // Validate on form submission
-      loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+      regPassword.addEventListener('input', () => {
+        const v = regPassword.value;
+        pwRequired.style.display = 'none';
+        regPassword.classList.remove('error-border');
 
-        const isValid = validateEmail();
+        const hasLetter = /[a-zA-Z]/.test(v);
+        const hasNumber = /[0-9]/.test(v);
+        const minLen = v.length >= 7;
 
-        if (isValid) {
-          // Proceed with login logic / next step
-          alert('Success! Proceeding to the next step.');
+        updateRule(ruleHasLetter, hasLetter, 'At least one letter');
+        updateRule(ruleHasNumber, hasNumber, 'At least one number');
+        updateRule(ruleMinLength, minLen, 'Minimum 7 characters');
+      });
+
+      function updateRule(el, met, text) {
+        if (met) {
+          el.className = 'pw-rule met';
+          el.innerHTML = `<span class="check-circle"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span> ${text}`;
+        } else {
+          el.className = 'pw-rule';
+          el.innerHTML = `<span class="bullet"></span> ${text}`;
+        }
+      }
+
+      regPassword.addEventListener('blur', () => {
+        if (regPassword.value.trim() === '') {
+          pwRequired.style.display = 'flex';
+          regPassword.classList.add('error-border');
         }
       });
 
-      // Clear error state as the user types
-      emailInput.addEventListener('input', () => {
-        if (emailInput.value.trim() !== '') {
-          // If they are typing, we can check or simply remove the error 
-          // until they submit or blur to keep UX clean.
-          // Let's remove the error class on input if it matches regex
-          if (emailRegex.test(emailInput.value.trim())) {
-            emailGroup.classList.remove('has-error');
+      // Display name
+      const regDisplayName = document.getElementById('regDisplayName');
+      const dnCounter = document.getElementById('dnCounter');
+      const dnCheck = document.getElementById('dnCheck');
+
+      regDisplayName.addEventListener('input', () => {
+        const len = regDisplayName.value.length;
+        dnCounter.textContent = `${len}/16`;
+        dnCheck.style.display = len > 0 ? 'flex' : 'none';
+      });
+
+      async function fetchRandomName() {
+        try {
+          const res = await fetch(`${API_BASE}/api/random-name`);
+          const data = await res.json();
+          regDisplayName.value = data.name;
+          dnCounter.textContent = `${data.name.length}/16`;
+          dnCheck.style.display = 'flex';
+        } catch {
+          regDisplayName.value = 'Player' + Math.floor(Math.random() * 9999);
+          const len = regDisplayName.value.length;
+          dnCounter.textContent = `${len}/16`;
+          dnCheck.style.display = 'flex';
+        }
+      }
+
+      document.getElementById('dnRefresh').addEventListener('click', fetchRandomName);
+
+      // Registration submit
+      document.getElementById('regContinueBtn').addEventListener('click', async () => {
+        let valid = true;
+        const firstName = document.getElementById('regFirstName').value.trim();
+        const lastName = document.getElementById('regLastName').value.trim();
+        const password = regPassword.value;
+        const displayName = regDisplayName.value.trim();
+        const agreed = document.getElementById('agreeTerms').checked;
+
+        // Validate
+        const fnErr = document.getElementById('firstNameError');
+        const lnErr = document.getElementById('lastNameError');
+        const dnErr = document.getElementById('displayNameError');
+        const termsErr = document.getElementById('termsError');
+
+        if (!firstName) { fnErr.style.display = 'block'; document.getElementById('regFirstName').classList.add('error-border'); valid = false; }
+        else { fnErr.style.display = 'none'; document.getElementById('regFirstName').classList.remove('error-border'); }
+
+        if (!lastName) { lnErr.style.display = 'block'; document.getElementById('regLastName').classList.add('error-border'); valid = false; }
+        else { lnErr.style.display = 'none'; document.getElementById('regLastName').classList.remove('error-border'); }
+
+        if (!password || !/[a-zA-Z]/.test(password) || !/[0-9]/.test(password) || password.length < 7) {
+          pwRequired.style.display = 'flex'; regPassword.classList.add('error-border'); valid = false;
+        }
+
+        if (!displayName) { dnErr.style.display = 'block'; valid = false; }
+        else { dnErr.style.display = 'none'; }
+
+        if (!agreed) { termsErr.style.display = 'block'; valid = false; }
+        else { termsErr.style.display = 'none'; }
+
+        if (!valid) return;
+
+        try {
+          const res = await fetch(`${API_BASE}/api/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: currentEmail, first_name: firstName, last_name: lastName,
+              password, display_name: displayName, dob: currentDOB
+            })
+          });
+          const data = await res.json();
+          if (data.success) {
+            otpFlow = 'register';
+            await sendOTP(currentEmail);
+            showScreen(screenOTP);
+          } else {
+            alert(data.error || 'Registration failed');
           }
+        } catch (err) {
+          alert('Server error. Please make sure the server is running.');
         }
       });
 
-      // Also validate on blur (when user clicks out of the input)
-      emailInput.addEventListener('blur', () => {
-        if (emailInput.value.trim() !== '') {
-          validateEmail();
+      // ==================== SCREEN 7: OTP ====================
+      document.getElementById('backFromOTP').addEventListener('click', () => {
+        clearInterval(otpTimerInterval);
+        if (otpFlow === 'register') showScreen(screenDetails);
+        else showScreen(screenPassword);
+      });
+
+      const otpDigits = document.querySelectorAll('.otp-digit');
+      const otpContinueBtn = document.getElementById('otpContinueBtn');
+
+      otpDigits.forEach((inp, i) => {
+        inp.addEventListener('input', (e) => {
+          inp.value = inp.value.replace(/\D/g, '');
+          if (inp.value && i < 5) otpDigits[i + 1].focus();
+          checkOTPComplete();
+        });
+        inp.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !inp.value && i > 0) {
+            otpDigits[i - 1].focus();
+          }
+        });
+        inp.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const text = (e.clipboardData.getData('text') || '').replace(/\D/g, '').substring(0, 6);
+          text.split('').forEach((ch, idx) => { if (otpDigits[idx]) otpDigits[idx].value = ch; });
+          checkOTPComplete();
+          if (text.length > 0) otpDigits[Math.min(text.length, 5)].focus();
+        });
+      });
+
+      function checkOTPComplete() {
+        const code = Array.from(otpDigits).map(i => i.value).join('');
+        otpContinueBtn.classList.toggle('enabled', code.length === 6);
+      }
+
+      otpContinueBtn.addEventListener('click', async () => {
+        if (!otpContinueBtn.classList.contains('enabled')) return;
+        const code = Array.from(otpDigits).map(i => i.value).join('');
+        const otpError = document.getElementById('otpError');
+
+        try {
+          const res = await fetch(`${API_BASE}/api/verify-otp`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail, code })
+          });
+          const data = await res.json();
+          if (data.success) {
+            otpError.style.display = 'none';
+            clearInterval(otpTimerInterval);
+            if (data.user) {
+              localStorage.setItem('epicUser', JSON.stringify(data.user));
+            }
+            window.location.href = 'index.html';
+          } else {
+            otpError.style.display = 'block';
+            otpError.textContent = data.error || 'Invalid or expired code';
+          }
+        } catch {
+          otpError.style.display = 'block';
+          otpError.textContent = 'Server error';
         }
       });
+
+      async function sendOTP(email) {
+        try {
+          const res = await fetch(`${API_BASE}/api/send-otp`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          const data = await res.json();
+          document.getElementById('otpMaskedEmail').textContent = data.maskedEmail || email;
+        } catch { }
+
+        // Clear OTP inputs
+        otpDigits.forEach(d => d.value = '');
+        otpContinueBtn.classList.remove('enabled');
+        document.getElementById('otpError').style.display = 'none';
+
+        // Start timer
+        let seconds = 30;
+        const timerEl = document.getElementById('otpTimer');
+        const resendEl = document.getElementById('otpResend');
+        timerEl.textContent = seconds;
+        resendEl.innerHTML = `Resend Email in <span id="otpTimer">${seconds}</span>s`;
+
+        clearInterval(otpTimerInterval);
+        otpTimerInterval = setInterval(() => {
+          seconds--;
+          const timerSpan = document.getElementById('otpTimer');
+          if (timerSpan) timerSpan.textContent = seconds;
+          if (seconds <= 0) {
+            clearInterval(otpTimerInterval);
+            resendEl.innerHTML = `<a href="#" id="otpResendLink">Resend Email</a>`;
+            document.getElementById('otpResendLink').addEventListener('click', (e) => {
+              e.preventDefault();
+              sendOTP(currentEmail);
+            });
+          }
+        }, 1000);
+      }
+
+      // ==================== SCREEN 8: PASSWORD (Sign-in) ====================
+      document.getElementById('backFromPassword').addEventListener('click', () => showScreen(screenSignIn));
+
+      document.getElementById('signinPwToggle').addEventListener('click', () => {
+        const inp = document.getElementById('signinPassword');
+        inp.type = inp.type === 'password' ? 'text' : 'password';
+      });
+
+      document.getElementById('signinPasswordBtn').addEventListener('click', async () => {
+        const password = document.getElementById('signinPassword').value;
+        const signinError = document.getElementById('signinError');
+
+        if (!password) { signinError.textContent = 'Password is required'; signinError.style.display = 'block'; return; }
+
+        try {
+          const res = await fetch(`${API_BASE}/api/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail, password })
+          });
+          const data = await res.json();
+          if (data.success) {
+            signinError.style.display = 'none';
+            otpFlow = 'signin';
+            await sendOTP(currentEmail);
+            showScreen(screenOTP);
+          } else {
+            signinError.textContent = data.error || 'Incorrect password';
+            signinError.style.display = 'block';
+          }
+        } catch {
+          signinError.textContent = 'Server not available';
+          signinError.style.display = 'block';
+        }
+      });
+
+      // Check if already logged in
+      const user = JSON.parse(localStorage.getItem('epicUser') || 'null');
+      if (user) {
+        window.location.href = 'index.html';
+      }
     });
   </script>
 </body>
